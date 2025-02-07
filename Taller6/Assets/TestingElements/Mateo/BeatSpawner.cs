@@ -1,15 +1,16 @@
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class BeatSpawner : MonoBehaviour
 {
-    public AudioSource audioSource; // Assign your AudioSource with an audio clip
-    public GameObject spawnPrefab; // The object to spawn on beats
-    public GameObject tilePrefab; // The visual representation of each tile
-    public float BPM = 120f; // Set BPM (Beats Per Minute) manually
-    public int gridSize = 8; // Grid size for predefined positions (8x8 = 64 points)
-    public float spacing = 2f; // Spacing between points in the grid
-    public int poolSize = 20; // Initial size of object pool
+    public AudioSource audioSource;
+    public GameObject spawnPrefab;
+    public GameObject tilePrefab;
+    public float BPM = 120f;
+    public int gridSize = 8;
+    public float spacing = 2f;
+    public int poolSize = 20;
 
     private Transform[] spawnPoints;
     private Queue<GameObject> objectPool = new Queue<GameObject>();
@@ -27,7 +28,7 @@ public class BeatSpawner : MonoBehaviour
 
         GenerateSpawnPoints();
         InitializePool();
-        beatInterval = 60f / BPM; // Convert BPM to seconds per beat
+        beatInterval = 60f / BPM;
         nextBeatTime = Time.time + beatInterval;
     }
 
@@ -55,7 +56,6 @@ public class BeatSpawner : MonoBehaviour
                 point.transform.parent = transform;
                 spawnPoints[x * gridSize + y] = point.transform;
 
-                // Create a visual representation of the tile
                 GameObject tile = Instantiate(tilePrefab, point.transform.position, Quaternion.identity);
                 tile.transform.parent = transform;
             }
@@ -82,7 +82,6 @@ public class BeatSpawner : MonoBehaviour
         }
         else
         {
-            // If the pool is empty, expand it
             GameObject newObj = Instantiate(spawnPrefab);
             return newObj;
         }
@@ -96,28 +95,19 @@ public class BeatSpawner : MonoBehaviour
 
     void SpawnObjectsOnBeat()
     {
-        if (beatCount % 1 == 0) SpawnInstance(1);
-        if (beatCount % 2 == 0) SpawnInstance(2);
-        if (beatCount % 3 == 0) SpawnInstance(3);
-        if (beatCount % 4 == 0) SpawnInstance(4);
-    }
-
-    void SpawnInstance(int interval)
-    {
         if (spawnPoints.Length == 0) return;
 
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         GameObject obj = GetPooledObject();
         obj.transform.position = spawnPoint.position;
-        obj.name = "BeatObject_" + interval + "_Beat";
+        obj.name = "BeatObject_Beat_" + beatCount;
 
-        // Return to pool after a set duration (e.g., 2 seconds)
-        StartCoroutine(DeactivateAfterTime(obj, 2f));
-    }
-
-    System.Collections.IEnumerator DeactivateAfterTime(GameObject obj, float time)
-    {
-        yield return new WaitForSeconds(time);
-        ReturnToPool(obj);
+        // Attach or reset ItemGrow behavior
+        ItemGrow itemGrow = obj.GetComponent<ItemGrow>();
+        if (itemGrow == null)
+        {
+            itemGrow = obj.AddComponent<ItemGrow>();
+        }
+        itemGrow.Initialize(ReturnToPool, beatInterval);
     }
 }
