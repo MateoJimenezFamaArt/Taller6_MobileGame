@@ -282,7 +282,6 @@ GameObject:
   - component: {fileID: 226665833}
   - component: {fileID: 226665832}
   - component: {fileID: 226665834}
-  - component: {fileID: 226665835}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -333,19 +332,6 @@ MonoBehaviour:
   tiempoMaximo: 1
   offsetMaximoSwipe: 0.3
   textoDireccion: {fileID: 1487726720}
---- !u!114 &226665835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226665831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895aa7a273b53ba44b8cd57b7e6f2232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listaCanciones: []
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Canci\xF3n (2)"
       objectReference: {fileID: 0}
+    - target: {fileID: 5326763170091710126, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+      propertyPath: tiempoSwipe
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -585,6 +575,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2326003639153365196, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
   m_PrefabInstance: {fileID: 340707095}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &397593203 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5326763170091710126, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+  m_PrefabInstance: {fileID: 340707095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b08d0f3e07a61d045a0884a6bed08684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,6 +767,7 @@ GameObject:
   - component: {fileID: 838344281}
   - component: {fileID: 838344283}
   - component: {fileID: 838344282}
+  - component: {fileID: 838344284}
   m_Layer: 5
   m_Name: Carrusel
   m_TagString: Untagged
@@ -785,8 +787,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4788202224287235767}
   - {fileID: 340707096}
+  - {fileID: 4788202224287235767}
   - {fileID: 973348159}
   m_Father: {fileID: 1940187913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -833,6 +835,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838344280}
   m_CullTransparentMesh: 1
+--- !u!114 &838344284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838344280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd5a357582068a4f8a0e96e06df09ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  niveles:
+  - {fileID: 397593203}
+  - {fileID: 4788202224287235768}
+  - {fileID: 973348160}
+  nivelActual: {fileID: 0}
 --- !u!1001 &973348158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -925,6 +944,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Canci\xF3n (1)"
       objectReference: {fileID: 0}
+    - target: {fileID: 5326763170091710126, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+      propertyPath: tiempoSwipe
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -935,6 +958,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2326003639153365196, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
   m_PrefabInstance: {fileID: 973348158}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &973348160 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5326763170091710126, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+  m_PrefabInstance: {fileID: 973348158}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b08d0f3e07a61d045a0884a6bed08684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1172615988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1516,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Canci\xF3n"
       objectReference: {fileID: 0}
+    - target: {fileID: 5326763170091710126, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+      propertyPath: tiempoSwipe
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1492,6 +1530,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2326003639153365196, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
   m_PrefabInstance: {fileID: 4788202224287235766}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4788202224287235768 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5326763170091710126, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+  m_PrefabInstance: {fileID: 4788202224287235766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b08d0f3e07a61d045a0884a6bed08684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
