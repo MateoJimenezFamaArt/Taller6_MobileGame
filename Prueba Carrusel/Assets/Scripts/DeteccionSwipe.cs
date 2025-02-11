@@ -69,22 +69,22 @@ public class DeteccionSwipe : MonoBehaviour
 
         if (dirX >= 0 && diferencia >= offsetMaximoSwipe)
         {
-            Debug.Log("Swipe Derecha");
+            inputManager.SwipeDerecha();
             textoDireccion.text = "Derecha";
         }
         else if (dirX <= 0 && diferencia >= offsetMaximoSwipe)
         {
-            Debug.Log("Swipe Izquierda");
+            inputManager.SwipeIzquierda();
             textoDireccion.text = "Izquierda";
         }
         else if (dirY >= 0 && diferencia <= -offsetMaximoSwipe)
         {
-            Debug.Log("Swipe Arriba");
+            inputManager.SwipeArriba();
             textoDireccion.text = "Arriba";
         }
         else if (dirY <= 0 && diferencia <= -offsetMaximoSwipe)
         {
-            Debug.Log("Swipe Abajo");
+            inputManager.SwipeAbajo();
             textoDireccion.text = "Abajo";
         }
     }
