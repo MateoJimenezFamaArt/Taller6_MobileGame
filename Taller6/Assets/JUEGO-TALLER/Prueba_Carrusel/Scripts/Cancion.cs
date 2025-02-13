@@ -22,7 +22,7 @@ public class Cancion : MonoBehaviour
         inputManager = InputManager.Instanciar;
         carruselManager = CarruselManager.Instanciar;
         rectTransform = GetComponent<RectTransform>();
-        if (rectTransform.position.x == 0) carruselManager.nivelActual = this;
+        if (rectTransform.localPosition.x == 0) carruselManager.nivelActual = this; Debug.Log("Holi mundo");
     }
 
     private void OnEnable()
@@ -39,11 +39,13 @@ public class Cancion : MonoBehaviour
 
     private void SwipeIzquierda()
     {
+        Debug.Log("Swipe Izq");
         if (!bloquearIzquierda) rectTransform.DOAnchorPosX(rectTransform.localPosition.x - separacion, tiempoSwipe);
     }
 
     private void SwipeDerecha()
     {
+        Debug.Log("Swipe Der");
         if (!bloquearDerecha) rectTransform.DOAnchorPosX(rectTransform.localPosition.x + separacion, tiempoSwipe);
     }
 }

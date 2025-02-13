@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : Singleton<InputManager>
 {
-    private InputControls controlesInput;
+    private InputSystem_Actions controlesInput;
 
     #region Eventos
     public delegate void EventoInicioContacto(Vector2 position, float tiempo);
@@ -25,7 +25,7 @@ public class InputManager : Singleton<InputManager>
 
     private void Awake()
     {
-        controlesInput = new InputControls();
+        controlesInput = new InputSystem_Actions();
         camaraPrincipal = Camera.main;
     }
     private void OnEnable()
@@ -38,12 +38,13 @@ public class InputManager : Singleton<InputManager>
     }
     void Start()
     {
-        controlesInput.Tocar.ContactoPrimario.started += ctx => InicioContacto(ctx);
-        controlesInput.Tocar.ContactoPrimario.canceled += ctx => TerminoContacto(ctx);
+        controlesInput.UI.ContactoPrimario.started += ctx => InicioContacto(ctx);
+        controlesInput.UI.ContactoPrimario.canceled += ctx => TerminoContacto(ctx);
     }
 
     private void InicioContacto(InputAction.CallbackContext contexto)
     {
+        Debug.Log("Inicio contacto");
         if (EnInicioContacto != null) EnInicioContacto(posicionPrimaria(), (float)contexto.startTime);
     }
 
@@ -76,6 +77,6 @@ public class InputManager : Singleton<InputManager>
 
     public Vector2 posicionPrimaria()
     {
-        return Utilidades.PantallaAMundo(camaraPrincipal, controlesInput.Tocar.PosiciónContacto.ReadValue<Vector2>());
+        return Utilidades.PantallaAMundo(camaraPrincipal, controlesInput.UI.PosicionContacto.ReadValue<Vector2>());
     }
 }
