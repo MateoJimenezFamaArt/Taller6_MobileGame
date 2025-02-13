@@ -18,6 +18,9 @@ public class BeatSpawner : MonoBehaviour
     private float nextBeatTime;
     private int beatCount = 0;
 
+    // Define grid boundaries
+    private float gridMinX, gridMaxX, gridMinZ, gridMaxZ;
+
     void Start()
     {
         if (audioSource == null || spawnPrefab == null || tilePrefab == null)
@@ -30,6 +33,12 @@ public class BeatSpawner : MonoBehaviour
         InitializePool();
         beatInterval = 60f / BPM;
         nextBeatTime = Time.time + beatInterval;
+
+        // Set grid boundaries based on the grid size and spacing
+        gridMinX = transform.position.x - (gridSize / 2 * spacing);
+        gridMaxX = transform.position.x + (gridSize / 2 * spacing);
+        gridMinZ = transform.position.z - (gridSize / 2 * spacing);
+        gridMaxZ = transform.position.z + (gridSize / 2 * spacing);
     }
 
     void Update()
@@ -111,4 +120,5 @@ public class BeatSpawner : MonoBehaviour
         }
         itemGrow.Initialize(ReturnToPool, beatInterval);
     }
+    
 }
