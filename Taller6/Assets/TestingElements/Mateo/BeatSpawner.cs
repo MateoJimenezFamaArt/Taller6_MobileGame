@@ -90,6 +90,7 @@ public class BeatSpawner : MonoBehaviour
     void ReturnToPool(GameObject obj)
     {
         obj.SetActive(false);
+        obj.transform.localScale = new Vector3(1, 1, 1);
         objectPool.Enqueue(obj);
     }
 

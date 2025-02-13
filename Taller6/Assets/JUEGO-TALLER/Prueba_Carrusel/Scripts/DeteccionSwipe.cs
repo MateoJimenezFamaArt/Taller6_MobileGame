@@ -11,8 +11,6 @@ public class DeteccionSwipe : MonoBehaviour
     float tiempoMaximo = 1.0f;
     [SerializeField]
     float offsetMaximoSwipe = .2f;
-    [SerializeField]
-    TextMeshProUGUI textoDireccion;
 
     private Vector2 posicionInicial;
     private Vector2 posicionFinal;
@@ -70,22 +68,19 @@ public class DeteccionSwipe : MonoBehaviour
         if (dirX >= 0 && diferencia >= offsetMaximoSwipe)
         {
             inputManager.SwipeDerecha();
-            textoDireccion.text = "Derecha";
+            Debug.Log("Derecha");
         }
         else if (dirX <= 0 && diferencia >= offsetMaximoSwipe)
         {
             inputManager.SwipeIzquierda();
-            textoDireccion.text = "Izquierda";
         }
         else if (dirY >= 0 && diferencia <= -offsetMaximoSwipe)
         {
             inputManager.SwipeArriba();
-            textoDireccion.text = "Arriba";
         }
         else if (dirY <= 0 && diferencia <= -offsetMaximoSwipe)
         {
             inputManager.SwipeAbajo();
-            textoDireccion.text = "Abajo";
         }
     }
 }
