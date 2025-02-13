@@ -153,6 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 2
+  moveDuration: 0.2
+  audioSource: {fileID: 599039620}
+  BPM: 120
+  playerRenderer: {fileID: 336712987}
 --- !u!136 &336712986
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -258,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: {x: 8, y: 8}
   spacing: 2
+  gridCenter: {fileID: 599039622}
 --- !u!1 &599039619
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,10 +272,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 599039622}
-  - component: {fileID: 599039621}
   - component: {fileID: 599039620}
+  - component: {fileID: 599039625}
+  - component: {fileID: 599039624}
+  - component: {fileID: 599039623}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -286,8 +293,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c101f66c75f73ed49a5088f981a004c8, type: 3}
-  m_Resource: {fileID: 8300000, guid: c101f66c75f73ed49a5088f981a004c8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f806f0652b69d104896965c37e2e7c11, type: 3}
+  m_Resource: {fileID: 8300000, guid: f806f0652b69d104896965c37e2e7c11, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -373,25 +380,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &599039621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 599039619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5907e08c82aecef4797cbeb90e1c6ca4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 599039620}
-  spawnPrefab: {fileID: 8086687074196694183, guid: 462f6b334eea8bf41b9ebc42973fc01b, type: 3}
-  tilePrefab: {fileID: 1837066907865776296, guid: 0543b3a9827856749846a4a957f29706, type: 3}
-  BPM: 120
-  gridSize: 8
-  spacing: 2
-  poolSize: 64
 --- !u!4 &599039622
 Transform:
   m_ObjectHideFlags: 0
@@ -407,6 +395,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &599039623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599039619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea78f8cff75a094799324919b6c1730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPrefab: {fileID: 8086687074196694183, guid: 462f6b334eea8bf41b9ebc42973fc01b, type: 3}
+  poolSize: 20
+  maxObjectsOnGrid: 10
+--- !u!114 &599039624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599039619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a81eec047e50824f800cd6d6bb3030f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilePrefab: {fileID: 1837066907865776296, guid: 0543b3a9827856749846a4a957f29706, type: 3}
+  gridSize: 8
+  spacing: 2
+--- !u!114 &599039625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599039619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ef1835ef3567d448d8dcb2c713f2e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 599039620}
+  BPM: 120
 --- !u!1 &1779964738
 GameObject:
   m_ObjectHideFlags: 0
