@@ -1,0 +1,10 @@
+# ninja log v5
+46	2579	7604134312926833	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	955837011185e63f
+24	2584	7604134313198942	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	cf590292976a50d1
+1	2605	7604134313719219	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	c94327bc4f29c19a
+54	2820	7604134315017541	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	d432a3d95dc3c284
+30	2849	7604134316186879	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	d75baa1e3a230a97
+15	2873	7604134316443417	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	df4e702e0c58da17
+36	3074	7604134318773085	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	c45b11f4f9e163b8
+9	3540	7604134323211393	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	1f94a416fd243645
+3540	3743	7604134325491232	C:/Users/Usuario/Documents/UPB/8vo Semestre/Taller 6/Prueba Carrusel/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3eu6zw3n/obj/arm64-v8a/libgame.so	f5b576d6b8b24bb1

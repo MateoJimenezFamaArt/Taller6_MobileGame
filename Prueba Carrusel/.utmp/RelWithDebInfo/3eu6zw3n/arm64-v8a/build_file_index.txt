@@ -1,0 +1,2 @@
+C:\Users\Usuario\Documents\UPB\8vo Semestre\Taller 6\Prueba Carrusel\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\Usuario\Documents\UPB\8vo Semestre\Taller 6\Prueba Carrusel\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt
