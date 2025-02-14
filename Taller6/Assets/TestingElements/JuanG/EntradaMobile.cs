@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+public class EntradaMobile : MonoBehaviour
 {
-    public static InputManager Instance { get; private set; }
+    public static EntradaMobile Instance { get; private set; }
     private TouchInput _touchInput;
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
@@ -78,6 +78,6 @@ public class InputManager : MonoBehaviour
                 Debug.Log("Swipe Down");
             }
         }
-        
+
     }
 }

@@ -8,8 +8,6 @@ public class playertest : MonoBehaviour
     void Update()
     {
         
-        Vector2 direccion = InputManager.Instance.GetTouchMovement();
-        Debug.Log(direccion);
-        Debug.Log("Swipe");
+        Vector2 direccion = EntradaMobile.Instance.GetTouchMovement();
     }
 }
