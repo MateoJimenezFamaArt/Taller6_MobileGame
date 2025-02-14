@@ -31,15 +31,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "TouchCanceled",
-                    "type": "Value",
-                    "id": "8d0f9851-a4ed-47c7-bf20-ad39ebf22446",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -119,17 +110,6 @@
                     "action": "TouchMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "1cb832bf-f0bc-448f-9005-9fb2ec689603",
-                    "path": "<Touchscreen>/primaryTouch/phase",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TouchCanceled",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }

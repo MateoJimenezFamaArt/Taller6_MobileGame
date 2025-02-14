@@ -53,15 +53,6 @@ public partial class @TouchInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""TouchCanceled"",
-                    ""type"": ""Value"",
-                    ""id"": ""8d0f9851-a4ed-47c7-bf20-ad39ebf22446"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -141,17 +132,6 @@ public partial class @TouchInput: IInputActionCollection2, IDisposable
                     ""action"": ""TouchMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1cb832bf-f0bc-448f-9005-9fb2ec689603"",
-                    ""path"": ""<Touchscreen>/primaryTouch/phase"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TouchCanceled"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -163,7 +143,6 @@ public partial class @TouchInput: IInputActionCollection2, IDisposable
         m_Mobile_TouchPress = m_Mobile.FindAction("TouchPress", throwIfNotFound: true);
         m_Mobile_TouchPosition = m_Mobile.FindAction("TouchPosition", throwIfNotFound: true);
         m_Mobile_TouchMovement = m_Mobile.FindAction("TouchMovement", throwIfNotFound: true);
-        m_Mobile_TouchCanceled = m_Mobile.FindAction("TouchCanceled", throwIfNotFound: true);
     }
 
     ~@TouchInput()
@@ -233,7 +212,6 @@ public partial class @TouchInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Mobile_TouchPress;
     private readonly InputAction m_Mobile_TouchPosition;
     private readonly InputAction m_Mobile_TouchMovement;
-    private readonly InputAction m_Mobile_TouchCanceled;
     public struct MobileActions
     {
         private @TouchInput m_Wrapper;
@@ -241,7 +219,6 @@ public partial class @TouchInput: IInputActionCollection2, IDisposable
         public InputAction @TouchPress => m_Wrapper.m_Mobile_TouchPress;
         public InputAction @TouchPosition => m_Wrapper.m_Mobile_TouchPosition;
         public InputAction @TouchMovement => m_Wrapper.m_Mobile_TouchMovement;
-        public InputAction @TouchCanceled => m_Wrapper.m_Mobile_TouchCanceled;
         public InputActionMap Get() { return m_Wrapper.m_Mobile; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -260,9 +237,6 @@ public partial class @TouchInput: IInputActionCollection2, IDisposable
             @TouchMovement.started += instance.OnTouchMovement;
             @TouchMovement.performed += instance.OnTouchMovement;
             @TouchMovement.canceled += instance.OnTouchMovement;
-            @TouchCanceled.started += instance.OnTouchCanceled;
-            @TouchCanceled.performed += instance.OnTouchCanceled;
-            @TouchCanceled.canceled += instance.OnTouchCanceled;
         }
 
         private void UnregisterCallbacks(IMobileActions instance)
@@ -276,9 +250,6 @@ public partial class @TouchInput: IInputActionCollection2, IDisposable
             @TouchMovement.started -= instance.OnTouchMovement;
             @TouchMovement.performed -= instance.OnTouchMovement;
             @TouchMovement.canceled -= instance.OnTouchMovement;
-            @TouchCanceled.started -= instance.OnTouchCanceled;
-            @TouchCanceled.performed -= instance.OnTouchCanceled;
-            @TouchCanceled.canceled -= instance.OnTouchCanceled;
         }
 
         public void RemoveCallbacks(IMobileActions instance)
@@ -301,6 +272,5 @@ public partial class @TouchInput: IInputActionCollection2, IDisposable
         void OnTouchPress(InputAction.CallbackContext context);
         void OnTouchPosition(InputAction.CallbackContext context);
         void OnTouchMovement(InputAction.CallbackContext context);
-        void OnTouchCanceled(InputAction.CallbackContext context);
     }
 }

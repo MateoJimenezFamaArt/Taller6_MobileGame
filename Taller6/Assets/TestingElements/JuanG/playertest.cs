@@ -9,5 +9,6 @@ public class playertest : MonoBehaviour
     {
         
         Vector2 direccion = EntradaMobile.Instance.GetTouchMovement();
+        Debug.Log(direccion);
     }
 }

@@ -11,6 +11,7 @@ public class GridMovement : MonoBehaviour
     private bool attemptedWrongMove = false; // Flag for incorrect move attempts
     private Vector3 queuedMove; // Stores a move attempt to execute on next beat
     private bool hasQueuedMove = false; // If the player tried moving off-beat
+    [SerializeField] private bool isTouch = true;
 
     void OnEnable()
     {
@@ -31,21 +32,43 @@ public class GridMovement : MonoBehaviour
 
     void Update()
     {
+        if (!isTouch)
+        {
+            if (isMoving) return;
+
+            Vector3 moveDirection = Vector3.zero;
+            moveDirection = EntradaMobile.Instance.GetTouchMovement();
+
+            if (moveDirection != Vector3.zero)
+            {
+                if (isMoving) return; // Ignore movement while already moving
+
+                hasQueuedMove = true;
+                queuedMove = moveDirection;
+            }
+        }
+        else
+        {
+            MovePlayerTouch();
+        }
+    }
+
+
+    public void MovePlayerTouch()
+    {
         if (isMoving) return;
 
         Vector3 moveDirection = Vector3.zero;
+        moveDirection = EntradaMobile.Instance.GetTouchMovement();
 
-        if (Input.GetKeyDown(KeyCode.W)) moveDirection = new Vector3(0, 0, moveDistance);
-        else if (Input.GetKeyDown(KeyCode.S)) moveDirection = new Vector3(0, 0, -moveDistance);
-        else if (Input.GetKeyDown(KeyCode.A)) moveDirection = new Vector3(-moveDistance, 0, 0);
-        else if (Input.GetKeyDown(KeyCode.D)) moveDirection = new Vector3(moveDistance, 0, 0);
+        moveDirection.Normalize();
 
         if (moveDirection != Vector3.zero)
         {
             if (isMoving) return; // Ignore movement while already moving
 
             hasQueuedMove = true;
-            queuedMove = moveDirection;
+            queuedMove = new Vector3(moveDirection.x * moveDistance, 0, moveDirection.y * moveDistance);
         }
     }
 
