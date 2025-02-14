@@ -6,14 +6,14 @@ public class Carrusel : MonoBehaviour
     InputManager inputManager;
 
     [SerializeField] RectTransform[] objetosCarrusel;
-    RectTransform objetoActual;
+    [SerializeField] RectTransform objetoActual;
 
     [SerializeField] float separacion;
     [SerializeField] float tiempoSwipe;
     [SerializeField] bool esVertical;
 
-    bool estaEnPrimero;
-    bool estaEnUltimo;
+    [SerializeField] bool estaEnPrimero;
+    [SerializeField] bool estaEnUltimo;
 
     private void Awake()
     {
@@ -43,7 +43,7 @@ public class Carrusel : MonoBehaviour
 
     void SwipeIzquierda()
     {
-        if (!esVertical || estaEnUltimo) return;
+        if (esVertical || estaEnUltimo) return;
         estaEnPrimero = false;
 
         foreach (RectTransform objeto in objetosCarrusel)
@@ -58,7 +58,7 @@ public class Carrusel : MonoBehaviour
 
     void SwipeDerecha()
     {
-        if(!esVertical || estaEnPrimero) return;
+        if(esVertical || estaEnPrimero) return;
         estaEnUltimo = false;
 
         foreach(RectTransform objeto in objetosCarrusel)
@@ -73,7 +73,7 @@ public class Carrusel : MonoBehaviour
 
     void SwipeArriba()
     {
-        if (esVertical || estaEnUltimo) return;
+        if (!esVertical || estaEnUltimo) return;
         estaEnPrimero = false;
 
         foreach (RectTransform objeto in objetosCarrusel)
@@ -88,7 +88,7 @@ public class Carrusel : MonoBehaviour
 
     void SwipeAbajo()
     {
-        if (esVertical || estaEnPrimero) return;
+        if (!esVertical || estaEnPrimero) return;
         estaEnUltimo = false;
 
         foreach (RectTransform objeto in objetosCarrusel)
