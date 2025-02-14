@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a0032444f7f6d7c49b5039be4a4d76ca
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 163920
+  packageName: Neumorphic UI - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Basic/Buttons/Retry.prefab
+  uploadId: 355130
