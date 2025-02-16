@@ -4,7 +4,7 @@ using System.Collections;
 public class GridMovement : MonoBehaviour
 {
     public float moveDistance = 2f; // Step distance in grid
-    public float moveDuration = 0.2f; // Smooth movement duration
+    public float moveDuration = 1f; // Smooth movement duration
     public Renderer playerRenderer; // Player's material for color feedback
 
     private bool isMoving = false;
@@ -17,6 +17,7 @@ public class GridMovement : MonoBehaviour
     {
         // Subscribe to beat event from BeatManager
         BeatManager.OnBeat += OnBeat;
+        EntradaMobile.Instance.OnSwipe += context => { StartCoroutine(MovePlayerTouch(context)); };
     }
 
     void Start()
@@ -26,52 +27,36 @@ public class GridMovement : MonoBehaviour
             Debug.LogError("GridMovement: No Renderer assigned for color feedback!");
             return;
         }
-
         SetColor(Color.yellow); // Start in idle mode
+        
     }
 
-    void Update()
+   private IEnumerator MovePlayerTouch(Vector2 direction)
     {
-        if (!isTouch)
+        Vector3 moveDirection = Vector3.zero;
+        Debug.Log("direction" + direction);
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            if (isMoving) return;
-
-            Vector3 moveDirection = Vector3.zero;
-            moveDirection = EntradaMobile.Instance.GetTouchMovement();
-
-            if (moveDirection != Vector3.zero)
-            {
-                if (isMoving) return; // Ignore movement while already moving
-
-                hasQueuedMove = true;
-                queuedMove = moveDirection;
-            }
+            moveDirection = direction.x > 0 ? Vector3.right : Vector3.left;
         }
         else
         {
-            MovePlayerTouch();
+            moveDirection = direction.y > 0 ? Vector3.forward : Vector3.back; // Cambio de up/down a forward/back para un movimiento más estándar en 3D.
         }
-    }
 
+        Vector3 targetPosition = transform.position + moveDirection * moveDistance;
+        float elapsedTime = 0f;
 
-    public void MovePlayerTouch()
-    {
-        if (isMoving) return;
-
-        Vector3 moveDirection = Vector3.zero;
-        moveDirection = EntradaMobile.Instance.GetTouchMovement();
-
-        moveDirection.Normalize();
-
-        if (moveDirection != Vector3.zero)
+        while (elapsedTime < moveDuration)
         {
-            if (isMoving) return; // Ignore movement while already moving
-
-            hasQueuedMove = true;
-            queuedMove = new Vector3(moveDirection.x * moveDistance, 0, moveDirection.y * moveDistance);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, elapsedTime / moveDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
-    }
 
+        transform.position = targetPosition;
+        isMoving = false;
+    }
     void OnBeat()
     {
         if (isMoving) return;
@@ -106,6 +91,7 @@ public class GridMovement : MonoBehaviour
 
         transform.position = targetPosition;
         isMoving = false;
+        hasQueuedMove = false;
     }
 
     private void SetColor(Color color)

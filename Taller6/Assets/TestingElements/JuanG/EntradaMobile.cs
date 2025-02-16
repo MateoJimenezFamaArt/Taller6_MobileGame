@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class EntradaMobile : MonoBehaviour
 {
     public static EntradaMobile Instance { get; private set; }
     private TouchInput _touchInput;
-    private Vector2 startTouchPosition;
-    private Vector2 endTouchPosition;
+    private Vector2 CurrentPos => _touchInput.Mobile.TouchPosition.ReadValue<Vector2>();
+    private Vector2 initialPos;
+    private float swipeThreshold = 100f;
+    public delegate void Swipe(Vector2 direction);
+    public event Swipe OnSwipe;
 
     private void Awake()
     {
@@ -20,7 +24,8 @@ public class EntradaMobile : MonoBehaviour
         Instance = this;
         Debug.Log("InputManager created");
         _touchInput = new TouchInput();
-        _touchInput.Mobile.TouchPress.started += ctx => startTouchPosition = GetTouchPosition();
+        _touchInput.Mobile.TouchPress.performed += _ => { initialPos = CurrentPos; };
+        _touchInput.Mobile.TouchPress.canceled += ctx => DetectSwipe();
     }
 
     private void OnEnable()
@@ -45,39 +50,22 @@ public class EntradaMobile : MonoBehaviour
         return _touchInput.Mobile.TouchPress.IsPressed();
     }
 
-    public Vector2 GetTouchMovement()
+    public void DetectSwipe()
     {
-        return _touchInput.Mobile.TouchMovement.ReadValue<Vector2>();
-    }
+        Vector2 delta = CurrentPos - initialPos;
+        Vector2 swipeDirection = Vector2.zero;
 
-    public void Swipe()
-    {
-        Vector2 direcion = _touchInput.Mobile.TouchMovement.ReadValue<Vector2>();
-        Debug.Log(direcion);
-        endTouchPosition = GetTouchPosition();
-        Vector2 direction = endTouchPosition - startTouchPosition;
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        if (Mathf.Abs(delta.x) > swipeThreshold)
         {
-            if (direction.x > 0)
-            {
-                Debug.Log("Swipe Right");
-            }
-            else
-            {
-                Debug.Log("Swipe Left");
-            }
+            swipeDirection.x = Mathf.Clamp(delta.x, -1, 1);
         }
-        else
+        if (Mathf.Abs(delta.y) > swipeThreshold)
         {
-            if (direction.y > 0)
-            {
-                Debug.Log("Swipe Up");
-            }
-            else
-            {
-                Debug.Log("Swipe Down");
-            }
+            swipeDirection.y = Mathf.Clamp(delta.y, -1, 1);
         }
-
+        if(swipeDirection != Vector2.zero && OnSwipe != null)
+        {
+            OnSwipe?.Invoke(swipeDirection);
+        }
     }
 }

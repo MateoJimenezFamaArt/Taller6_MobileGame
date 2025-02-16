@@ -7,26 +7,17 @@
             "actions": [
                 {
                     "name": "TouchPress",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "1a12956c-ab1e-42b2-9dc7-828b2faf3481",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
                     "name": "TouchPosition",
                     "type": "Value",
                     "id": "d26e71d2-7b32-4997-8d44-fdbdb2177ddd",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "TouchMovement",
-                    "type": "Value",
-                    "id": "c0c75aeb-c398-46f5-8dbe-dde09788aedf",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -55,61 +46,6 @@
                     "action": "TouchPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "89aadf7a-302d-47fb-8f81-507e4d84d501",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TouchMovement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "6a6265dd-6305-498d-895a-0b30771b5913",
-                    "path": "<Touchscreen>/primaryTouch/delta/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TouchMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "ae366ec2-e524-456c-8a5f-024e0c62e06e",
-                    "path": "<Touchscreen>/primaryTouch/delta/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TouchMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "bfb21a4c-7f6d-4b45-80ad-2e4cc2bc83a6",
-                    "path": "<Touchscreen>/primaryTouch/delta/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TouchMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "7508dccb-3e77-48ac-9154-d5c50a5d9664",
-                    "path": "<Touchscreen>/primaryTouch/delta/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TouchMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }

@@ -341,7 +341,19 @@ MonoBehaviour:
     m_ActionId: d26e71d2-7b32-4997-8d44-fdbdb2177ddd
     m_ActionName: Mobile/TouchPosition
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 336712985}
+        m_TargetAssemblyTypeName: GridMovement, Assembly-CSharp
+        m_MethodName: MovePlayerTouch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c0c75aeb-c398-46f5-8dbe-dde09788aedf
     m_ActionName: Mobile/TouchMovement
   m_NeverAutoSwitchControlSchemes: 0
@@ -488,7 +500,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599039619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cea78f8cff75a094799324919b6c1730, type: 3}
   m_Name: 
