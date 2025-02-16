@@ -8,20 +8,22 @@ public class Carrusel : MonoBehaviour
     InputManager inputManager;
 
     [SerializeField] RectTransform[] objetosCarrusel;
-    [SerializeField] RectTransform objetoActual;
+    [SerializeField] Carrusel carruselCanciones;
+    RectTransform objetoActual;
 
     [SerializeField] float separacion;
     [SerializeField] float tiempoSwipe;
     [SerializeField] bool esVertical;
 
-    [SerializeField] bool estaEnPrimero;
-    [SerializeField] bool estaEnUltimo;
+    bool estaEnPrimero;
+    bool estaEnUltimo;
 
     private void Awake()
     {
         inputManager = InputManager.Instanciar;
 
         objetoActual = objetosCarrusel[0];
+        carruselCanciones.enabled = false;
 
         estaEnPrimero = true;
         estaEnUltimo = false;
@@ -82,6 +84,10 @@ public class Carrusel : MonoBehaviour
         }
 
         objetoActual = objetosCarrusel[Array.IndexOf(objetosCarrusel, objetoActual) + 1];
+
+        if (objetoActual == carruselCanciones.gameObject.GetComponent<RectTransform>()) carruselCanciones.enabled = true;
+        else carruselCanciones.enabled = false;
+
         if (objetoActual == objetosCarrusel[^1]) estaEnUltimo = true;
     }
 
@@ -96,6 +102,10 @@ public class Carrusel : MonoBehaviour
         }
 
         objetoActual = objetosCarrusel[Array.IndexOf(objetosCarrusel, objetoActual) - 1];
+
+        if (objetoActual == carruselCanciones.gameObject.GetComponent<RectTransform>()) carruselCanciones.enabled = true;
+        else carruselCanciones.enabled = false;
+
         if (objetoActual == objetosCarrusel[0]) estaEnPrimero = true;
     }
 }
