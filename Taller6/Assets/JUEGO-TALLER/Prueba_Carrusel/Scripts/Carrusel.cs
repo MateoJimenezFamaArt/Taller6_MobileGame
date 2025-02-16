@@ -1,4 +1,6 @@
 using DG.Tweening;
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class Carrusel : MonoBehaviour
@@ -49,10 +51,9 @@ public class Carrusel : MonoBehaviour
         foreach (RectTransform objeto in objetosCarrusel)
         {
             objeto.DOAnchorPosX(objeto.localPosition.x - separacion, tiempoSwipe);
-
-            if (objeto.localPosition.y == 0) objetoActual = objeto;
         }
 
+        objetoActual = objetosCarrusel[Array.IndexOf(objetosCarrusel, objetoActual) + 1];
         if (objetoActual == objetosCarrusel[^1]) estaEnUltimo = true;
     }
 
@@ -64,10 +65,9 @@ public class Carrusel : MonoBehaviour
         foreach(RectTransform objeto in objetosCarrusel)
         {
             objeto.DOAnchorPosX(objeto.localPosition.x + separacion, tiempoSwipe);
-
-            if (objeto.localPosition.x == 0) objetoActual = objeto;
         }
 
+        objetoActual = objetosCarrusel[Array.IndexOf(objetosCarrusel, objetoActual) - 1];
         if (objetoActual == objetosCarrusel[0]) estaEnPrimero = true;
     }
 
@@ -78,11 +78,10 @@ public class Carrusel : MonoBehaviour
 
         foreach (RectTransform objeto in objetosCarrusel)
         {
-            objeto.DOAnchorPosY(objeto.localPosition.y + separacion, tiempoSwipe);
-
-            if (objeto.localPosition.y == 0) objetoActual = objeto;
+            objeto.DOAnchorPosY(objeto.localPosition.y + separacion, tiempoSwipe, true);
         }
 
+        objetoActual = objetosCarrusel[Array.IndexOf(objetosCarrusel, objetoActual) + 1];
         if (objetoActual == objetosCarrusel[^1]) estaEnUltimo = true;
     }
 
@@ -94,10 +93,11 @@ public class Carrusel : MonoBehaviour
         foreach (RectTransform objeto in objetosCarrusel)
         {
             objeto.DOAnchorPosY(objeto.localPosition.y - separacion, tiempoSwipe);
-
-            if (objeto.localPosition.y == 0) objetoActual = objeto;
         }
 
-        if (objetoActual == objetosCarrusel[^1]) estaEnPrimero = true;
+        objetoActual = objetosCarrusel[Array.IndexOf(objetosCarrusel, objetoActual) - 1];
+        if (objetoActual == objetosCarrusel[0]) estaEnPrimero = true;
     }
 }
+
+
