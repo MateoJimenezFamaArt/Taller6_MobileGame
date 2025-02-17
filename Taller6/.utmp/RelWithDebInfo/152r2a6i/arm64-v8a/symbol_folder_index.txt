@@ -1,0 +1,1 @@
+C:\Users\USUARIO\Documents\Github\Taller6_MobileGame\Taller6\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\152r2a6i\obj\arm64-v8a

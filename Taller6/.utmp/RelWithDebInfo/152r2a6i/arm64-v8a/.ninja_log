@@ -1,0 +1,10 @@
+# ninja log v5
+23	882	7614381019937862	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	f3fdc3f3f3cd0346
+17	896	7614381020064376	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	c0c595d966283185
+7	906	7614381020164086	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	4078839a04f3aa25
+27	923	7614381020370928	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	5b732bd0cefbcaa1
+31	974	7614381020883047	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	2a800c7174b602ce
+0	1008	7614381021196849	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	4f0e438ad775bf48
+12	1130	7614381022409539	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	ad5d5f2e5061be42
+4	1230	7614381023356236	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	1ee80681eb9d9c60
+1230	1331	7614381024503623	C:/Users/USUARIO/Documents/Github/Taller6_MobileGame/Taller6/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/152r2a6i/obj/arm64-v8a/libgame.so	b1b3991991f9a7de
