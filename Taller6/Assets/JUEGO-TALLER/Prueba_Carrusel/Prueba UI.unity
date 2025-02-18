@@ -1201,12 +1201,10 @@ MonoBehaviour:
   - {fileID: 340707096}
   - {fileID: 4788202224287235767}
   - {fileID: 973348159}
-  objetoActual: {fileID: 0}
+  carruselCanciones: {fileID: 0}
   separacion: 800
   tiempoSwipe: 0.3
   esVertical: 0
-  estaEnPrimero: 0
-  estaEnUltimo: 0
 --- !u!1001 &973348158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1709,12 +1707,10 @@ MonoBehaviour:
   - {fileID: 41106294}
   - {fileID: 838344281}
   - {fileID: 56708927}
-  objetoActual: {fileID: 0}
+  carruselCanciones: {fileID: 838344284}
   separacion: 1080
   tiempoSwipe: 0.5
   esVertical: 1
-  estaEnPrimero: 0
-  estaEnUltimo: 0
 --- !u!1001 &4788202224287235766
 PrefabInstance:
   m_ObjectHideFlags: 0
