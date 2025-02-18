@@ -23,7 +23,6 @@ public class Carrusel : MonoBehaviour
         inputManager = InputManager.Instanciar;
 
         objetoActual = objetosCarrusel[0];
-        carruselCanciones.enabled = false;
 
         estaEnPrimero = true;
         estaEnUltimo = false;
