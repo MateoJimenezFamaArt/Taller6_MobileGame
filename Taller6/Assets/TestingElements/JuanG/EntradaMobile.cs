@@ -7,7 +7,7 @@ public class EntradaMobile : MonoBehaviour
 {
     public static EntradaMobile Instance { get; private set; }
     private TouchInput _touchInput;
-    private Vector2 CurrentPos => _touchInput.Mobile.TouchPosition.ReadValue<Vector2>();
+    private Vector2 currentPos => _touchInput.Mobile.TouchPosition.ReadValue<Vector2>();
     private Vector2 initialPos;
     private float swipeThreshold = 100f;
     public delegate void Swipe(Vector2 direction);
@@ -24,8 +24,18 @@ public class EntradaMobile : MonoBehaviour
         Instance = this;
         Debug.Log("InputManager created");
         _touchInput = new TouchInput();
-        _touchInput.Mobile.TouchPress.performed += _ => { initialPos = CurrentPos; };
-        _touchInput.Mobile.TouchPress.canceled += ctx => DetectSwipe();
+
+        _touchInput.Mobile.TouchPress.performed += ctx =>
+        {
+            Invoke(nameof(SetInitialPos), 0.01f);
+        };
+        _touchInput.Mobile.TouchPress.canceled += _ => DetectSwipe();
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+    }
+
+    private void SetInitialPos()
+    {
+        initialPos = _touchInput.Mobile.TouchPosition.ReadValue<Vector2>();
     }
 
     private void OnEnable()
@@ -38,23 +48,10 @@ public class EntradaMobile : MonoBehaviour
         _touchInput.Mobile.Disable();
     }
 
-
-    public Vector2 GetTouchPosition()
-    {
-        return Touchscreen.current.primaryTouch.position.ReadValue();
-    }
-
-    public bool IsTouchPress()
-    {
-        Debug.Log("IsTouchPress");
-        return _touchInput.Mobile.TouchPress.IsPressed();
-    }
-
     public void DetectSwipe()
     {
-        Vector2 delta = CurrentPos - initialPos;
+        Vector2 delta = currentPos - initialPos;
         Vector2 swipeDirection = Vector2.zero;
-
         if (Mathf.Abs(delta.x) > swipeThreshold)
         {
             swipeDirection.x = Mathf.Clamp(delta.x, -1, 1);

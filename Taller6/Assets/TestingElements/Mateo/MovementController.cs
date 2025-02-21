@@ -1,97 +1,69 @@
 using UnityEngine;
+using DG.Tweening;
 using System.Collections;
 
 public class GridMovement : MonoBehaviour
 {
-    public float moveDistance = 2f; // Step distance in grid
-    public float moveDuration = 1f; // Smooth movement duration
-    public Renderer playerRenderer; // Player's material for color feedback
+    public float moveDistance = 2f; // Distancia de movimiento en la cuadrícula
+    public float moveDuration = 0.5f; // Duración del movimiento
+    public float jumpPower = 1.5f; // Altura del salto
+    public Renderer playerRenderer; // Material del jugador para color
 
     private bool isMoving = false;
-    private bool attemptedWrongMove = false; // Flag for incorrect move attempts
-    private Vector3 queuedMove; // Stores a move attempt to execute on next beat
-    private bool hasQueuedMove = false; // If the player tried moving off-beat
-    [SerializeField] private bool isTouch = true;
+    private Vector3 queuedMove;
+    private bool hasQueuedMove = false;
 
     void OnEnable()
     {
-        // Subscribe to beat event from BeatManager
         BeatManager.OnBeat += OnBeat;
-        EntradaMobile.Instance.OnSwipe += context => { StartCoroutine(MovePlayerTouch(context)); };
+        EntradaMobile.Instance.OnSwipe += HandleSwipeInput;
     }
 
-    void Start()
+    private void HandleSwipeInput(Vector2 direction)
     {
-        if (playerRenderer == null)
-        {
-            Debug.LogError("GridMovement: No Renderer assigned for color feedback!");
-            return;
-        }
-        SetColor(Color.yellow); // Start in idle mode
-        
-    }
+        if (isMoving) return; // Ignorar input si ya está moviéndose
 
-   private IEnumerator MovePlayerTouch(Vector2 direction)
-    {
         Vector3 moveDirection = Vector3.zero;
-        Debug.Log("direction" + direction);
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
             moveDirection = direction.x > 0 ? Vector3.right : Vector3.left;
         }
         else
         {
-            moveDirection = direction.y > 0 ? Vector3.forward : Vector3.back; // Cambio de up/down a forward/back para un movimiento más estándar en 3D.
+            moveDirection = direction.y > 0 ? Vector3.forward : Vector3.back;
         }
 
-        Vector3 targetPosition = transform.position + moveDirection * moveDistance;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < moveDuration)
-        {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, elapsedTime / moveDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = targetPosition;
-        isMoving = false;
+        queuedMove = moveDirection * moveDistance;
+        hasQueuedMove = true;
+        SetColor(Color.red); // Indicar que hay un movimiento en espera
     }
+
     void OnBeat()
     {
         if (isMoving) return;
 
         if (hasQueuedMove)
         {
-            // Execute stored movement
-            StartCoroutine(MoveToPosition(transform.position + queuedMove));
+            Vector3 targetPosition = transform.position + queuedMove;
             hasQueuedMove = false;
+            StartCoroutine(JumpToPosition(targetPosition));
         }
         else
         {
-            // If player is idle, set yellow
             SetColor(Color.yellow);
         }
     }
 
-    private IEnumerator MoveToPosition(Vector3 targetPosition)
+    private IEnumerator JumpToPosition(Vector3 targetPosition)
     {
+        targetPosition.y = transform.position.y; // Mantener la misma altura
         isMoving = true;
-        SetColor(Color.green); // Successful beat movement
+        SetColor(Color.green); // Indicar que el jugador se está moviendo
+        Debug.Log("Jumping to " + targetPosition);
+        transform.DOJump(targetPosition, jumpPower, 1, 0.25f)
+            .OnComplete(() => isMoving = false); // Volver a permitir movimiento al finalizar el salto
 
-        float elapsedTime = 0f;
-        Vector3 startPosition = transform.position;
-
-        while (elapsedTime < moveDuration)
-        {
-            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / moveDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = targetPosition;
-        isMoving = false;
-        hasQueuedMove = false;
+        yield return new WaitForSeconds(moveDuration);
     }
 
     private void SetColor(Color color)
@@ -104,7 +76,6 @@ public class GridMovement : MonoBehaviour
 
     void OnDisable()
     {
-        // Unsubscribe from the beat event to prevent memory leaks
         BeatManager.OnBeat -= OnBeat;
     }
 }

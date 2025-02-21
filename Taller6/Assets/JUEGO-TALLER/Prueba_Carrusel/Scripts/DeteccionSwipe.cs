@@ -68,7 +68,6 @@ public class DeteccionSwipe : MonoBehaviour
         if (dirX >= 0 && diferencia >= offsetMaximoSwipe)
         {
             inputManager.SwipeDerecha();
-            Debug.Log("Derecha");
         }
         else if (dirX <= 0 && diferencia >= offsetMaximoSwipe)
         {
