@@ -35,7 +35,6 @@ public class EntradaMobile : MonoBehaviour
     private void SetInitialPos()
     {
         initialPos = _touchInput.Mobile.TouchPosition.ReadValue<Vector2>();
-        Debug.Log($"InitialPos después del retraso: {initialPos}");
     }
 
     private void OnEnable()
@@ -52,7 +51,6 @@ public class EntradaMobile : MonoBehaviour
     {
         Vector2 delta = currentPos - initialPos;
         Vector2 swipeDirection = Vector2.zero;
-        Debug.Log($"Delta: {delta}");
         if (Mathf.Abs(delta.x) > swipeThreshold)
         {
             swipeDirection.x = Mathf.Clamp(delta.x, -1, 1);
