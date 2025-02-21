@@ -423,8 +423,8 @@ MonoBehaviour:
   tiempoBotonActivo: 0.5
   botonPausa: {fileID: 474046614}
   panelPausa: {fileID: 1863929973}
-  tiempoconteo: 0.3
-  conteoDespausar: {fileID: 0}
+  tiempoconteo: 1
+  conteoDespausar: {fileID: 665370431}
 --- !u!4 &520078062
 Transform:
   m_ObjectHideFlags: 0
@@ -543,12 +543,12 @@ GameObject:
   - component: {fileID: 665370432}
   - component: {fileID: 665370431}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: conteo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &665370430
 RectTransform:
   m_ObjectHideFlags: 0
@@ -556,7 +556,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665370429}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -565,7 +565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: 321}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 63.1136, y: 87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &665370431
@@ -765,10 +765,9 @@ RectTransform:
   - {fileID: 1345375585}
   - {fileID: 474046615}
   - {fileID: 1544622998}
+  - {fileID: 665370430}
   - {fileID: 1863929976}
   - {fileID: 1330292947}
-  - {fileID: 2034382164}
-  - {fileID: 665370430}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1045,7 +1044,7 @@ GameObject:
   - component: {fileID: 1001094728}
   - component: {fileID: 1001094727}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Texto despausar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1058,7 +1057,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001094725}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2003,6 +2002,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 961228960}
+  - {fileID: 2034382164}
   m_Father: {fileID: 698562680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2036,17 +2036,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034382163}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1001094726}
-  m_Father: {fileID: 698562680}
+  m_Father: {fileID: 1863929976}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: 228}
+  m_AnchoredPosition: {x: -0.000030518, y: -132}
   m_SizeDelta: {x: 180, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2034382165
@@ -2093,13 +2093,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 520078060}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 520078061}
+        m_TargetAssemblyTypeName: Manager, Assembly-CSharp
+        m_MethodName: Despausar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
