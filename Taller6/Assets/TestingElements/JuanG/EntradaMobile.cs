@@ -30,6 +30,7 @@ public class EntradaMobile : MonoBehaviour
             Invoke(nameof(SetInitialPos), 0.01f);
         };
         _touchInput.Mobile.TouchPress.canceled += _ => DetectSwipe();
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
     private void SetInitialPos()
