@@ -8,16 +8,14 @@ public class GridMovement : MonoBehaviour
     public Renderer playerRenderer; // Player's material for color feedback
 
     private bool isMoving = false;
-    private bool attemptedWrongMove = false; // Flag for incorrect move attempts
-    private Vector3 queuedMove; // Stores a move attempt to execute on next beat
     private bool hasQueuedMove = false; // If the player tried moving off-beat
-    [SerializeField] private bool isTouch = true;
+    private Vector3 queuedMove = Vector3.zero; // Stores movement direction
 
     void OnEnable()
     {
         // Subscribe to beat event from BeatManager
         BeatManager.OnBeat += OnBeat;
-        EntradaMobile.Instance.OnSwipe += context => { StartCoroutine(MovePlayerTouch(context)); };
+        EntradaMobile.Instance.OnSwipe += HandleSwipeInput;
     }
 
     void Start()
@@ -30,10 +28,13 @@ public class GridMovement : MonoBehaviour
         SetColor(Color.yellow);
     }
 
-   private IEnumerator MovePlayerTouch(Vector2 direction)
+    private void HandleSwipeInput(Vector2 direction)
     {
+        if (isMoving) return; // Ignore input if currently moving
+
         Vector3 moveDirection = Vector3.zero;
-        Debug.Log("direction" + direction);
+        Debug.Log("Swipe Direction: " + direction);
+
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
             moveDirection = direction.x > 0 ? Vector3.right : Vector3.left;
@@ -43,33 +44,24 @@ public class GridMovement : MonoBehaviour
             moveDirection = direction.y > 0 ? Vector3.forward : Vector3.back;
         }
 
-        Vector3 targetPosition = transform.position + moveDirection * moveDistance;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < moveDuration)
-        {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, elapsedTime / moveDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = targetPosition;
-        
-        
+        queuedMove = moveDirection * moveDistance;
+        hasQueuedMove = true; // Store move for next beat
+        SetColor(Color.red); // Indicate that movement is queued
     }
+
     void OnBeat()
     {
         if (isMoving) return;
 
         if (hasQueuedMove)
         {
-            // Execute stored movement
+            // Execute stored movement on beat
             StartCoroutine(MoveToPosition(transform.position + queuedMove));
             hasQueuedMove = false;
         }
         else
         {
-            // If player is idle, set yellow
+            // If no movement is queued, set yellow
             SetColor(Color.yellow);
         }
     }
@@ -91,7 +83,6 @@ public class GridMovement : MonoBehaviour
 
         transform.position = targetPosition;
         isMoving = false;
-        hasQueuedMove = false;
     }
 
     private void SetColor(Color color)
@@ -104,7 +95,6 @@ public class GridMovement : MonoBehaviour
 
     void OnDisable()
     {
-        // Unsubscribe from the beat event to prevent memory leaks
         BeatManager.OnBeat -= OnBeat;
     }
 }
