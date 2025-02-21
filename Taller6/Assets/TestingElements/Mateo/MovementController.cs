@@ -5,10 +5,9 @@ using System.Collections;
 public class GridMovement : MonoBehaviour
 {
     public float moveDistance = 2f; // Distancia de movimiento en la cuadrícula
-    public float moveDuration = 0.5f; // Duración del movimiento
+    public float moveDuration = 0.2f; // Duración del movimiento
     public float jumpPower = 1.5f; // Altura del salto
     public Renderer playerRenderer; // Material del jugador para color
-
     private bool isMoving = false;
     private Vector3 queuedMove;
     private bool hasQueuedMove = false;
@@ -32,9 +31,13 @@ public class GridMovement : MonoBehaviour
         {
             moveDirection = direction.y > 0 ? Vector3.forward : Vector3.back;
         }
-
-        queuedMove = moveDirection * moveDistance;
-        hasQueuedMove = true;
+        if(moveDirection != Vector3.zero)
+        {
+            if (isMoving) return;
+            queuedMove = moveDirection * moveDistance;
+            hasQueuedMove = true;
+        }
+        
         SetColor(Color.red); // Indicar que hay un movimiento en espera
     }
 
@@ -59,8 +62,7 @@ public class GridMovement : MonoBehaviour
         targetPosition.y = transform.position.y; // Mantener la misma altura
         isMoving = true;
         SetColor(Color.green); // Indicar que el jugador se está moviendo
-        Debug.Log("Jumping to " + targetPosition);
-        transform.DOJump(targetPosition, jumpPower, 1, 0.25f)
+        transform.DOJump(targetPosition, jumpPower, 1, 0.1f)
             .OnComplete(() => isMoving = false); // Volver a permitir movimiento al finalizar el salto
 
         yield return new WaitForSeconds(moveDuration);
