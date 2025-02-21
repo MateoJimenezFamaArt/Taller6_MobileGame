@@ -9,7 +9,7 @@ public class EntradaMobile : MonoBehaviour
     private TouchInput _touchInput;
     private Vector2 currentPos => _touchInput.Mobile.TouchPosition.ReadValue<Vector2>();
     private Vector2 initialPos;
-    private float swipeThreshold = 10f;
+    private float swipeThreshold = 100f;
     public delegate void Swipe(Vector2 direction);
     public event Swipe OnSwipe;
 

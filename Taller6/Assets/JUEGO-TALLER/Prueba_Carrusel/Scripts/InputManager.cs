@@ -44,7 +44,6 @@ public class InputManager : Singleton<InputManager>
 
     private void InicioContacto(InputAction.CallbackContext contexto)
     {
-        Debug.Log("Inicio contacto");
         if (EnInicioContacto != null) EnInicioContacto(posicionPrimaria(), (float)contexto.startTime);
     }
 
