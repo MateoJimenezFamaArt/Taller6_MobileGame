@@ -27,8 +27,7 @@ public class GridMovement : MonoBehaviour
             Debug.LogError("GridMovement: No Renderer assigned for color feedback!");
             return;
         }
-        SetColor(Color.yellow); // Start in idle mode
-        
+        SetColor(Color.yellow);
     }
 
    private IEnumerator MovePlayerTouch(Vector2 direction)
@@ -41,7 +40,7 @@ public class GridMovement : MonoBehaviour
         }
         else
         {
-            moveDirection = direction.y > 0 ? Vector3.forward : Vector3.back; // Cambio de up/down a forward/back para un movimiento más estándar en 3D.
+            moveDirection = direction.y > 0 ? Vector3.forward : Vector3.back;
         }
 
         Vector3 targetPosition = transform.position + moveDirection * moveDistance;
@@ -55,7 +54,8 @@ public class GridMovement : MonoBehaviour
         }
 
         transform.position = targetPosition;
-        isMoving = false;
+        
+        
     }
     void OnBeat()
     {

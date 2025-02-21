@@ -29,7 +29,7 @@ public partial class @TouchInput: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""TouchPress"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""1a12956c-ab1e-42b2-9dc7-828b2faf3481"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -50,7 +50,7 @@ public partial class @TouchInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""76e5eba4-3f57-4cb0-80e0-d01e4587b278"",
-                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""path"": ""<Touchscreen>/Press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -61,7 +61,7 @@ public partial class @TouchInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d797deaf-b8cb-4a35-972e-ef6b1404a830"",
-                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""path"": ""<Touchscreen>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
