@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using TMPro;
 
-public class Manager : MonoBehaviour
+public class PanelManager : MonoBehaviour
 {
     InputManager inputManager;
 

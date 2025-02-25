@@ -619,7 +619,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Tap"",
+                    ""name"": ""Pausar"",
                     ""type"": ""Button"",
                     ""id"": ""95b7afc1-1a98-4774-97ee-f32d1b2e78d2"",
                     ""expectedControlType"": """",
@@ -1087,7 +1087,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Tap"",
+                    ""action"": ""Pausar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1183,7 +1183,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_InputToque = m_UI.FindAction("InputToque", throwIfNotFound: true);
         m_UI_ContactoPrimario = m_UI.FindAction("ContactoPrimario", throwIfNotFound: true);
         m_UI_PosicionContacto = m_UI.FindAction("PosicionContacto", throwIfNotFound: true);
-        m_UI_Pausar = m_UI.FindAction("Tap", throwIfNotFound: true);
+        m_UI_Pausar = m_UI.FindAction("Pausar", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
