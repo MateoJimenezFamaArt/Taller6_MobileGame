@@ -11,6 +11,8 @@ public class InputManager : Singleton<InputManager>
     public event EventoInicioContacto EnInicioContacto;
     public delegate void EventoTerminoContacto(Vector2 position, float tiempo);
     public event EventoTerminoContacto EnTerminoContacto;
+    public delegate void EventoDoubleTap();
+    public event EventoDoubleTap EnTap;
     public delegate void EventoSwipeArriba();
     public event EventoSwipeArriba EnSwipeArriba;
     public delegate void EventoSwipeAbajo();
@@ -40,6 +42,7 @@ public class InputManager : Singleton<InputManager>
     {
         controlesInput.UI.ContactoPrimario.started += ctx => InicioContacto(ctx);
         controlesInput.UI.ContactoPrimario.canceled += ctx => TerminoContacto(ctx);
+        controlesInput.UI.Pausar.performed += ctx => DoubleTap(ctx);
     }
 
     private void InicioContacto(InputAction.CallbackContext contexto)
@@ -50,6 +53,11 @@ public class InputManager : Singleton<InputManager>
     private void TerminoContacto(InputAction.CallbackContext contexto)
     {
         if(EnTerminoContacto != null) EnTerminoContacto(posicionPrimaria(), (float)contexto.time);
+    }
+
+    private void DoubleTap(InputAction.CallbackContext contexto)
+    {
+        if (EnTap != null) EnTap();
     }
 
     #region funciones para llamar eventos
