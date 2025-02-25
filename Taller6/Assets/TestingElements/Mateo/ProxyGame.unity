@@ -119,6 +119,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &215238553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 215238555}
+  - component: {fileID: 215238554}
+  m_Layer: 0
+  m_Name: EntradaMobile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &215238554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215238553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff651dc012652342b257eeadf4c4900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &215238555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215238553}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &336712984
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +177,7 @@ GameObject:
   - component: {fileID: 336712986}
   - component: {fileID: 336712985}
   - component: {fileID: 336712990}
+  - component: {fileID: 336712991}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -155,6 +200,7 @@ MonoBehaviour:
   moveDistance: 2
   moveDuration: 0
   playerRenderer: {fileID: 336712987}
+  isTouch: 1
 --- !u!136 &336712986
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -261,6 +307,44 @@ MonoBehaviour:
   gridSize: {x: 8, y: 8}
   spacing: 2
   gridCenter: {fileID: 599039622}
+--- !u!114 &336712991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336712984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 18da661c1ca6346499da57dcdb7113ca, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1a12956c-ab1e-42b2-9dc7-828b2faf3481
+    m_ActionName: Mobile/TouchPress
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d26e71d2-7b32-4997-8d44-fdbdb2177ddd
+    m_ActionName: Mobile/TouchPosition
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Mobile
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &599039619
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,3 +731,4 @@ SceneRoots:
   - {fileID: 599039622}
   - {fileID: 336712989}
   - {fileID: 1482494601}
+  - {fileID: 215238555}

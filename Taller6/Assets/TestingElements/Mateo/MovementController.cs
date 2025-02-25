@@ -1,52 +1,44 @@
 using UnityEngine;
+using DG.Tweening;
 using System.Collections;
 
 public class GridMovement : MonoBehaviour
 {
-    public float moveDistance = 2f; // Step distance in grid
-    public float moveDuration = 0.2f; // Smooth movement duration
-    public Renderer playerRenderer; // Player's material for color feedback
-
+    public float moveDistance = 2f; // Distancia de movimiento en la cuadrícula
+    public float moveDuration = 0.2f; // Duración del movimiento
+    public float jumpPower = 1.5f; // Altura del salto
+    public Renderer playerRenderer; // Material del jugador para color
     private bool isMoving = false;
-    private bool attemptedWrongMove = false; // Flag for incorrect move attempts
-    private Vector3 queuedMove; // Stores a move attempt to execute on next beat
-    private bool hasQueuedMove = false; // If the player tried moving off-beat
+    private Vector3 queuedMove;
+    private bool hasQueuedMove = false;
 
     void OnEnable()
     {
-        // Subscribe to beat event from BeatManager
         BeatManager.OnBeat += OnBeat;
+        EntradaMobile.Instance.OnSwipe += HandleSwipeInput;
     }
 
-    void Start()
+    private void HandleSwipeInput(Vector2 direction)
     {
-        if (playerRenderer == null)
-        {
-            Debug.LogError("GridMovement: No Renderer assigned for color feedback!");
-            return;
-        }
-
-        SetColor(Color.yellow); // Start in idle mode
-    }
-
-    void Update()
-    {
-        if (isMoving) return;
+        if (isMoving) return; // Ignorar input si ya está moviéndose
 
         Vector3 moveDirection = Vector3.zero;
-
-        if (Input.GetKeyDown(KeyCode.W)) moveDirection = new Vector3(0, 0, moveDistance);
-        else if (Input.GetKeyDown(KeyCode.S)) moveDirection = new Vector3(0, 0, -moveDistance);
-        else if (Input.GetKeyDown(KeyCode.A)) moveDirection = new Vector3(-moveDistance, 0, 0);
-        else if (Input.GetKeyDown(KeyCode.D)) moveDirection = new Vector3(moveDistance, 0, 0);
-
-        if (moveDirection != Vector3.zero)
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            if (isMoving) return; // Ignore movement while already moving
-
-            hasQueuedMove = true;
-            queuedMove = moveDirection;
+            moveDirection = direction.x > 0 ? Vector3.right : Vector3.left;
         }
+        else
+        {
+            moveDirection = direction.y > 0 ? Vector3.forward : Vector3.back;
+        }
+        if(moveDirection != Vector3.zero)
+        {
+            if (isMoving) return;
+            queuedMove = moveDirection * moveDistance;
+            hasQueuedMove = true;
+        }
+        
+        SetColor(Color.red); // Indicar que hay un movimiento en espera
     }
 
     void OnBeat()
@@ -55,34 +47,25 @@ public class GridMovement : MonoBehaviour
 
         if (hasQueuedMove)
         {
-            // Execute stored movement
-            StartCoroutine(MoveToPosition(transform.position + queuedMove));
+            Vector3 targetPosition = transform.position + queuedMove;
             hasQueuedMove = false;
+            StartCoroutine(JumpToPosition(targetPosition));
         }
         else
         {
-            // If player is idle, set yellow
             SetColor(Color.yellow);
         }
     }
 
-    private IEnumerator MoveToPosition(Vector3 targetPosition)
+    private IEnumerator JumpToPosition(Vector3 targetPosition)
     {
+        targetPosition.y = transform.position.y; // Mantener la misma altura
         isMoving = true;
-        SetColor(Color.green); // Successful beat movement
+        SetColor(Color.green); // Indicar que el jugador se está moviendo
+        transform.DOJump(targetPosition, jumpPower, 1, 0.1f)
+            .OnComplete(() => isMoving = false); // Volver a permitir movimiento al finalizar el salto
 
-        float elapsedTime = 0f;
-        Vector3 startPosition = transform.position;
-
-        while (elapsedTime < moveDuration)
-        {
-            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / moveDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = targetPosition;
-        isMoving = false;
+        yield return new WaitForSeconds(moveDuration);
     }
 
     private void SetColor(Color color)
@@ -95,7 +78,6 @@ public class GridMovement : MonoBehaviour
 
     void OnDisable()
     {
-        // Unsubscribe from the beat event to prevent memory leaks
         BeatManager.OnBeat -= OnBeat;
     }
 }

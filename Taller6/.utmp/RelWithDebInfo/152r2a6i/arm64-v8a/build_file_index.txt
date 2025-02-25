@@ -1,0 +1,2 @@
+C:\Users\USUARIO\Documents\Github\Taller6_MobileGame\Taller6\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\USUARIO\Documents\Github\Taller6_MobileGame\Taller6\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

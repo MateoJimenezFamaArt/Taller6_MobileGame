@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 226665833}
   - component: {fileID: 226665832}
   - component: {fileID: 226665834}
+  - component: {fileID: 226665835}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -408,6 +409,18 @@ MonoBehaviour:
   distanciaMinima: 0.2
   tiempoMaximo: 1
   offsetMaximoSwipe: 0.3
+--- !u!114 &226665835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226665831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52768eff483af204abdd4ec603665867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &328636179
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,9 +768,41 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.5018867
       objectReference: {fileID: 0}
+    - target: {fileID: 3578271638411823855, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578271638411823855, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578271638411823855, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 226665835}
+    - target: {fileID: 3578271638411823855, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578271638411823855, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578271638411823855, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578271638411823855, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: ProxyGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578271638411823855, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5070348719791694676, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_Name
-      value: "Canci\xF3n (2)"
+      value: Cancion1
       objectReference: {fileID: 0}
     - target: {fileID: 5149059880124463724, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_fontAsset
@@ -1201,7 +1246,7 @@ MonoBehaviour:
   - {fileID: 340707096}
   - {fileID: 4788202224287235767}
   - {fileID: 973348159}
-  carruselCanciones: {fileID: 0}
+  carruselCanciones: {fileID: 838344284}
   separacion: 800
   tiempoSwipe: 0.3
   esVertical: 0
@@ -1327,7 +1372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5070348719791694676, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_Name
-      value: "Canci\xF3n (1)"
+      value: Cancion3
       objectReference: {fileID: 0}
     - target: {fileID: 5149059880124463724, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_fontAsset
@@ -1583,9 +1628,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec94c004f6fdba349becb170f96dfaf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMeshPro: {fileID: 0}
-  pulseSpeed: 15
-  pulseStrength: 0.02
 --- !u!1 &1940187909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,7 +1875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5070348719791694676, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_Name
-      value: "Canci\xF3n"
+      value: Cancion2
       objectReference: {fileID: 0}
     - target: {fileID: 5149059880124463724, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_fontAsset
