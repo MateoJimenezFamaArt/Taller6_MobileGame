@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PanelManager : MonoBehaviour
 {
@@ -40,18 +41,26 @@ public class PanelManager : MonoBehaviour
     {
         if(!cancionNivel.isPlaying && !isPaused)
         {
-            panelVictoria.SetActive(true);
-            AcabarNivel();
+            GanarNivel();
         }
     }
 
-    private void AcabarNivel()
+    private void GanarNivel()
     {
+        panelVictoria.SetActive(true);
         RectTransform rectTrans = panelVictoria.GetComponent<RectTransform>();
         Image image = panelVictoria.GetComponent<Image>();
 
         rectTrans.DOAnchorPos(new Vector2(0, 0), 1f, true);
         image.DOFade(1f, .5f);
+    }
+
+    public void PerderNivel()
+    {
+        panelDerrota.SetActive(true);
+        RectTransform rectTrans = panelDerrota.GetComponent<RectTransform>();
+
+        rectTrans.DOAnchorPos(new Vector2(0, 0), 1f, true);
     }
 
     public void Tap()
@@ -78,6 +87,16 @@ public class PanelManager : MonoBehaviour
         conteoDespausar.gameObject.SetActive(true);
 
         StartCoroutine(IDespauasar(tiempoconteo));
+    }
+
+    public void Continuar()
+    {
+        SceneManager.LoadScene(SceneManager.GetSceneByName("Prueba UI").buildIndex);
+    }
+
+    public void Reiniciar()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator IDesaparecerBoton(float tiempo)

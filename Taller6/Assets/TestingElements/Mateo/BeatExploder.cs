@@ -16,6 +16,7 @@ public class BeatExploder : MonoBehaviour
     private int beatCounter = 0;
     private bool hasExploded = false;
     private ObjectSpawner objectSpawner; // Reference to return to pool
+    private PanelManager panelManager;
 
     void OnEnable()
     {
@@ -43,6 +44,7 @@ public class BeatExploder : MonoBehaviour
             Debug.LogError("BeatExploder: No ObjectSpawner found in scene!");
             return;
         }
+        panelManager = FindFirstObjectByType<PanelManager>();
     }
 
     void OnBeat()
@@ -72,7 +74,10 @@ public class BeatExploder : MonoBehaviour
             if (distance <= explosionRadius)
             {
                 Debug.Log("Player hit by explosion! Restarting scene...");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+                //Panel de derrota
+                panelManager.PerderNivel();
             }
         }
 
