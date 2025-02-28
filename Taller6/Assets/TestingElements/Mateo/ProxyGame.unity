@@ -1065,7 +1065,7 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   beatScale: 1.5
   moveDistance: 370
-  animationSpeed: 1
+  animationSpeed: 4
 --- !u!1 &298983714
 GameObject:
   m_ObjectHideFlags: 0
