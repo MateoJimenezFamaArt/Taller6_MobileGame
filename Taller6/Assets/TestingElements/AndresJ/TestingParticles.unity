@@ -380,10 +380,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3969164693220797109, guid: df3323975113e6e42a4e7fb9de27cdb1, type: 3}
-      propertyPath: stopAction
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3972828245683704045, guid: df3323975113e6e42a4e7fb9de27cdb1, type: 3}
       propertyPath: m_Name
       value: ParticlesLasers

@@ -107,6 +107,7 @@ void SpawnObjectOnBeat()
     Transform spawnPoint = borderSpawnPoints[Random.Range(0, borderSpawnPoints.Count)];
     GameObject obj = GetPooledObject();
     obj.transform.position = spawnPoint.position;
+    laserParticlesInstance = Instantiate(laserParticles,obj.transform);
 
     // Decidir aleatoriamente si el láser será vertical u horizontal
     bool isHorizontal = Random.value > 0.5f;
