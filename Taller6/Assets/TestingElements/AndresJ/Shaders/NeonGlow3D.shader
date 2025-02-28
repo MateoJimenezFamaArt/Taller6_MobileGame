@@ -8,9 +8,13 @@ Shader "Unlit/NeonGlow3D"
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" "Queue"="Overlay" }
+        Tags { "RenderType"="Transparent" "Queue"="Transparent" }
         Pass
         {
+            Blend One OneMinusSrcAlpha
+            ZWrite Off
+            Cull Off
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -41,7 +45,8 @@ Shader "Unlit/NeonGlow3D"
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-                col.rgb += _EmissionColor.rgb * _GlowIntensity; // Aumenta la emisión
+                col.a *= col.a;
+                col.rgb = (col.rgb * col.a) + (_EmissionColor.rgb * _GlowIntensity * col.a);
                 return col;
             }
             ENDCG

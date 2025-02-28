@@ -12,6 +12,8 @@ public class LaserSpawner : MonoBehaviour
     private List<GameObject> activeObjects = new List<GameObject>();
     private List<Transform> spawnPoints;
     private BeatManager beatManager;
+    [SerializeField] private ParticleSystem laserParticles;
+    [SerializeField] private ParticleSystem laserParticlesInstance;
 
     void Start()
     {
