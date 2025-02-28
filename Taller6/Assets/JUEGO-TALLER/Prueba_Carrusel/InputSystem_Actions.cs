@@ -617,6 +617,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pausar"",
+                    ""type"": ""Button"",
+                    ""id"": ""95b7afc1-1a98-4774-97ee-f32d1b2e78d2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1070,6 +1079,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""PosicionContacto"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d10b5d59-6a40-4e4c-813d-f129aafe1163"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pausar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1163,6 +1183,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_InputToque = m_UI.FindAction("InputToque", throwIfNotFound: true);
         m_UI_ContactoPrimario = m_UI.FindAction("ContactoPrimario", throwIfNotFound: true);
         m_UI_PosicionContacto = m_UI.FindAction("PosicionContacto", throwIfNotFound: true);
+        m_UI_Pausar = m_UI.FindAction("Pausar", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1353,6 +1374,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_InputToque;
     private readonly InputAction m_UI_ContactoPrimario;
     private readonly InputAction m_UI_PosicionContacto;
+    private readonly InputAction m_UI_Pausar;
     public struct UIActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -1370,6 +1392,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @InputToque => m_Wrapper.m_UI_InputToque;
         public InputAction @ContactoPrimario => m_Wrapper.m_UI_ContactoPrimario;
         public InputAction @PosicionContacto => m_Wrapper.m_UI_PosicionContacto;
+        public InputAction @Pausar => m_Wrapper.m_UI_Pausar;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1418,6 +1441,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @PosicionContacto.started += instance.OnPosicionContacto;
             @PosicionContacto.performed += instance.OnPosicionContacto;
             @PosicionContacto.canceled += instance.OnPosicionContacto;
+            @Pausar.started += instance.OnPausar;
+            @Pausar.performed += instance.OnPausar;
+            @Pausar.canceled += instance.OnPausar;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1461,6 +1487,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @PosicionContacto.started -= instance.OnPosicionContacto;
             @PosicionContacto.performed -= instance.OnPosicionContacto;
             @PosicionContacto.canceled -= instance.OnPosicionContacto;
+            @Pausar.started -= instance.OnPausar;
+            @Pausar.performed -= instance.OnPausar;
+            @Pausar.canceled -= instance.OnPausar;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1550,5 +1579,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnInputToque(InputAction.CallbackContext context);
         void OnContactoPrimario(InputAction.CallbackContext context);
         void OnPosicionContacto(InputAction.CallbackContext context);
+        void OnPausar(InputAction.CallbackContext context);
     }
 }

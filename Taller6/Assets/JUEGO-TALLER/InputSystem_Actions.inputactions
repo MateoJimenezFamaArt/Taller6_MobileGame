@@ -595,6 +595,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pausar",
+                    "type": "Button",
+                    "id": "95b7afc1-1a98-4774-97ee-f32d1b2e78d2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1046,6 +1055,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PosicionContacto",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d10b5d59-6a40-4e4c-813d-f129aafe1163",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pausar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
