@@ -25,22 +25,19 @@ public class EntradaMobile : MonoBehaviour
         Debug.Log("InputManager created");
         _touchInput = new TouchInput();
 
-        _touchInput.Mobile.TouchPress.performed += ctx =>
-        {
-            Invoke(nameof(SetInitialPos), 0.01f);
-        };
-        _touchInput.Mobile.TouchPress.canceled += _ => DetectSwipe();
         Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
-    private void SetInitialPos()
+    private void SetInitialPos(Vector2 touchInput)
     {
-        initialPos = _touchInput.Mobile.TouchPosition.ReadValue<Vector2>();
+        initialPos = touchInput;
     }
 
     private void OnEnable()
     {
         _touchInput.Mobile.Enable();
+        _touchInput.Mobile.TouchPress.started += ctx => SetInitialPos(ctx.ReadValue<Vector2>());
+        _touchInput.Mobile.TouchPress.canceled += _ => DetectSwipe();
     }
 
     private void OnDisable()

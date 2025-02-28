@@ -11,6 +11,7 @@ public class BeatManager : MonoBehaviour
     private float beatInterval;
     private float nextBeatTime;
     private int beatCount = 0;
+    private static bool isOnBeat = false;
 
     void Start()
     {
@@ -31,9 +32,15 @@ public class BeatManager : MonoBehaviour
             beatCount++;
             OnBeat?.Invoke(); // Notify all listeners that a beat happened
             nextBeatTime = Time.time + beatInterval;
+            isOnBeat = true;
         }
+        isOnBeat = false;
     }
 
     public float GetBeatInterval() => beatInterval;
     public int GetBeatCount() => beatCount;
+    public static bool IsOnBeat()
+    {
+        return isOnBeat;
+    }
 }
