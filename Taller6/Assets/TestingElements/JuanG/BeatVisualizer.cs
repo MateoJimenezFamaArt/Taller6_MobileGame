@@ -69,7 +69,7 @@ public class BeatVisualizerUI : MonoBehaviour
         spriteCentral.localScale = initialScale * beatScale;
 
         // Mover sprites laterales al centro
-        spriteIzquierdo.anchoredPosition = leftEndPos;
-        spriteDerecho.anchoredPosition = rightEndPos;
+        spriteIzquierdo.anchoredPosition = Vector2.Lerp(leftEndPos, spriteIzquierdo.anchoredPosition, animationSpeed * Time.deltaTime);
+        spriteDerecho.anchoredPosition = Vector2.Lerp(rightEndPos, spriteIzquierdo.anchoredPosition, animationSpeed * Time.deltaTime);
     }
 }
