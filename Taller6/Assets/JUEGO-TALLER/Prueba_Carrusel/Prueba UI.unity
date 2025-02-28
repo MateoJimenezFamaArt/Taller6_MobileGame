@@ -157,11 +157,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-<<<<<<< HEAD
   m_SizeDelta: {x: 640, y: 360}
-=======
-  m_SizeDelta: {x: 1920, y: 1080}
->>>>>>> parent of 443d1f4 (Music, Pulsing Text and Options Canvas)
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &41106295
 MonoBehaviour:
@@ -236,13 +232,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
   m_AnchoredPosition: {x: 0, y: -720}
   m_SizeDelta: {x: 640, y: 360}
-=======
-  m_AnchoredPosition: {x: 0, y: -2160}
-  m_SizeDelta: {x: 1920, y: 1080}
->>>>>>> parent of 443d1f4 (Music, Pulsing Text and Options Canvas)
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &56708928
 MonoBehaviour:
@@ -756,23 +747,7 @@ PrefabInstance:
     - target: {fileID: 3578271638411823855, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-<<<<<<< HEAD
       objectReference: {fileID: 226665835}
-=======
-      objectReference: {fileID: 21300000, guid: bea9614f3d6c1e645aaacef83ff1295c, type: 3}
-    - target: {fileID: 2972823143806164479, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5018867
-      objectReference: {fileID: 0}
-    - target: {fileID: 2972823143806164479, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
-      propertyPath: m_Color.g
-      value: 0.5018867
-      objectReference: {fileID: 0}
-    - target: {fileID: 2972823143806164479, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
-      propertyPath: m_Color.r
-      value: 0.5018867
-      objectReference: {fileID: 0}
->>>>>>> parent of 443d1f4 (Music, Pulsing Text and Options Canvas)
     - target: {fileID: 5070348719791694676, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_Name
       value: Cancion1
@@ -1150,13 +1125,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
   m_AnchoredPosition: {x: 0, y: -360}
   m_SizeDelta: {x: 640, y: 360}
-=======
-  m_AnchoredPosition: {x: 0, y: -1080}
-  m_SizeDelta: {x: 1920, y: 1080}
->>>>>>> parent of 443d1f4 (Music, Pulsing Text and Options Canvas)
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838344282
 MonoBehaviour:
@@ -1212,17 +1182,10 @@ MonoBehaviour:
   - {fileID: 340707096}
   - {fileID: 4788202224287235767}
   - {fileID: 973348159}
-<<<<<<< HEAD
   carruselCanciones: {fileID: 838344284}
   separacion: 300
-=======
-  objetoActual: {fileID: 0}
-  separacion: 800
->>>>>>> parent of 443d1f4 (Music, Pulsing Text and Options Canvas)
   tiempoSwipe: 0.3
   esVertical: 0
-  estaEnPrimero: 0
-  estaEnUltimo: 0
 --- !u!1001 &973348158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1342,13 +1305,10 @@ PrefabInstance:
     - target: {fileID: 2972823143806164479, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_Color.r
       value: 0.5018867
-<<<<<<< HEAD
       objectReference: {fileID: 0}
     - target: {fileID: 3552266921973923852, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -180
-=======
->>>>>>> parent of 443d1f4 (Music, Pulsing Text and Options Canvas)
       objectReference: {fileID: 0}
     - target: {fileID: 5070348719791694676, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_Name
@@ -1609,13 +1569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 0}
-<<<<<<< HEAD
   pulseSpeed: 1.5
   pulseStrength: 0.2
-=======
-  pulseSpeed: 15
-  pulseStrength: 0.02
->>>>>>> parent of 443d1f4 (Music, Pulsing Text and Options Canvas)
 --- !u!1 &1940187909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,17 +1692,10 @@ MonoBehaviour:
   - {fileID: 41106294}
   - {fileID: 838344281}
   - {fileID: 56708927}
-<<<<<<< HEAD
   carruselCanciones: {fileID: 838344284}
   separacion: 360
-=======
-  objetoActual: {fileID: 0}
-  separacion: 1080
->>>>>>> parent of 443d1f4 (Music, Pulsing Text and Options Canvas)
   tiempoSwipe: 0.5
   esVertical: 1
-  estaEnPrimero: 0
-  estaEnUltimo: 0
 --- !u!1001 &4788202224287235766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1867,13 +1815,10 @@ PrefabInstance:
     - target: {fileID: 2972823143806164479, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_Color.r
       value: 0.5018867
-<<<<<<< HEAD
       objectReference: {fileID: 0}
     - target: {fileID: 3552266921973923852, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -180
-=======
->>>>>>> parent of 443d1f4 (Music, Pulsing Text and Options Canvas)
       objectReference: {fileID: 0}
     - target: {fileID: 5070348719791694676, guid: 0be67f1a331a6894aa4e76a4547c1a11, type: 3}
       propertyPath: m_Name
