@@ -91,7 +91,8 @@ public class PanelManager : MonoBehaviour
 
     public void Continuar()
     {
-        SceneManager.LoadScene(SceneManager.GetSceneByName("Prueba UI").buildIndex);
+        Debug.Log(SceneManager.GetSceneByName("Prueba UI").buildIndex);
+        SceneManager.LoadScene(0); //Index de la escena de UI
     }
 
     public void Reiniciar()
