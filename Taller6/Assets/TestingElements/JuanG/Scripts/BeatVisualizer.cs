@@ -24,23 +24,24 @@ public class BeatVisualizerUI : MonoBehaviour
     }
     private void OnEnable()
     {
-        BeatManager.OnBeat += OnBeat;
+        SingletonBeatManager.Instance.OnBeat += OnBeat;
+        SingletonBeatManager.Instance.OutBeat += OutBeat;
     }
     private void OnDisable()
     {
-        BeatManager.OnBeat -= OnBeat;
-    }
-    private void Update()
-    {
-        if (BeatManager.IsOnBeat()) return;
-        // Volver al tamaño normal
-        spriteCentral.localScale = Vector3.Lerp(spriteCentral.localScale, initialScale, animationSpeed * Time.deltaTime);
-        centralImage.color = Color.Lerp(centralImage.color, normalColor, animationSpeed * Time.deltaTime);
+        SingletonBeatManager.Instance.OnBeat -= OnBeat;
+        SingletonBeatManager.Instance.OutBeat -= OutBeat;
     }
     private void OnBeat()
     {
         centralImage.color = beatColor;
         spriteCentral.localScale = initialScale * beatScale;
+    }
+
+    private void OutBeat()
+    {
+        spriteCentral.localScale = Vector3.Lerp(spriteCentral.localScale, initialScale, animationSpeed * Time.deltaTime);
+        centralImage.color = Color.Lerp(centralImage.color, normalColor, animationSpeed * Time.deltaTime);
     }
     
 }

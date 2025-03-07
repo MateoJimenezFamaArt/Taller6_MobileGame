@@ -14,8 +14,13 @@ public class GridMovement : MonoBehaviour
 
     void OnEnable()
     {
-        BeatManager.OnBeat += OnBeat;
+        SingletonBeatManager.Instance.OnBeat += OnBeat;
         EntradaMobile.Instance.OnSwipe += HandleSwipeInput;
+    }
+
+    void OnDisable()
+    {
+        SingletonBeatManager.Instance.OnBeat -= OnBeat;
     }
 
     private void HandleSwipeInput(Vector2 direction)
@@ -74,10 +79,5 @@ public class GridMovement : MonoBehaviour
         {
             playerRenderer.material.color = color;
         }
-    }
-
-    void OnDisable()
-    {
-        BeatManager.OnBeat -= OnBeat;
     }
 }

@@ -6,7 +6,7 @@ public class BeatManager : MonoBehaviour
     public AudioSource audioSource;
     public float BPM = 120f;
 
-    public static event Action OnBeat; // Event to notify scripts when a beat occurs
+    
 
     private float beatInterval;
     private float nextBeatTime;
@@ -30,7 +30,6 @@ public class BeatManager : MonoBehaviour
         if (audioSource.isPlaying && Time.time >= nextBeatTime)
         {
             beatCount++;
-            OnBeat?.Invoke(); // Notify all listeners that a beat happened
             nextBeatTime = Time.time + beatInterval;
             isOnBeat = true;
         }

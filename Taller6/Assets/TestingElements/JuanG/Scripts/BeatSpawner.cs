@@ -18,11 +18,11 @@ public class BeatSpawner : MonoBehaviour
     }
     private void OnEnable()
     {
-        BeatManager.OnBeat += OnBeat;
+        SingletonBeatManager.Instance.OnBeat += OnBeat;
     }
     private void OnDisable()
     {
-        BeatManager.OnBeat -= OnBeat;
+        SingletonBeatManager.Instance.OnBeat -= OnBeat;
     }
     private void OnBeat()
     {

@@ -33,13 +33,13 @@ public class ObjectSpawner : MonoBehaviour
         InitializePool();
 
         // Subscribe to the beat event
-        BeatManager.OnBeat += SpawnObjectOnBeat;
+        SingletonBeatManager.Instance.OnBeat += SpawnObjectOnBeat;
     }
 
     void OnDestroy()
     {
         // Unsubscribe to avoid memory leaks
-        BeatManager.OnBeat -= SpawnObjectOnBeat;
+        SingletonBeatManager.Instance.OnBeat -= SpawnObjectOnBeat;
     }
 
     void InitializePool()
