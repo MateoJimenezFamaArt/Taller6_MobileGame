@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SingletonBeatManager : MonoBehaviour
 {
-    public static SingletonBeatManager Instance;
+    public static SingletonBeatManager Instance { get; private set; }
 
     [SerializeField] AudioSource audioSource;
     [Tooltip("Beats per minute")]

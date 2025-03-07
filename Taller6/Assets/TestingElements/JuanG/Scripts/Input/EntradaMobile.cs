@@ -9,7 +9,7 @@ public class EntradaMobile : MonoBehaviour
     private TouchInput _touchInput;
     private Vector2 currentPos => _touchInput.Mobile.TouchPosition.ReadValue<Vector2>();
     private Vector2 initialPos;
-    private float swipeThreshold = 100f;
+    private readonly float swipeThreshold = 100f;
     public delegate void Swipe(Vector2 direction);
     public event Swipe OnSwipe;
 
@@ -23,28 +23,23 @@ public class EntradaMobile : MonoBehaviour
         }
         Instance = this;
         Debug.Log("InputManager created");
-        _touchInput = new TouchInput();
-
         Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
-
-    private void SetInitialPos(Vector2 touchInput)
-    {
-        initialPos = touchInput;
-    }
-
     private void OnEnable()
     {
+        _touchInput = new TouchInput();
         _touchInput.Mobile.Enable();
         _touchInput.Mobile.TouchPress.started += ctx => SetInitialPos(ctx.ReadValue<Vector2>());
         _touchInput.Mobile.TouchPress.canceled += _ => DetectSwipe();
     }
-
-    private void OnDisable()
+   private void OnDisable()
     {
         _touchInput.Mobile.Disable();
     }
-
+    private void SetInitialPos(Vector2 touchInput)
+    {
+        initialPos = touchInput;
+    }
     public void DetectSwipe()
     {
         Vector2 delta = currentPos - initialPos;

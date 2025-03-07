@@ -14,13 +14,16 @@ public class GridMovement : MonoBehaviour
 
     void OnEnable()
     {
-        SingletonBeatManager.Instance.OnBeat += OnBeat;
         EntradaMobile.Instance.OnSwipe += HandleSwipeInput;
+        SingletonBeatManager.Instance.OnBeat += OnBeat;
+        SingletonBeatManager.Instance.OutBeat += OutBeat;
     }
 
     void OnDisable()
     {
+        EntradaMobile.Instance.OnSwipe -= HandleSwipeInput;
         SingletonBeatManager.Instance.OnBeat -= OnBeat;
+        SingletonBeatManager.Instance.OutBeat -= OutBeat;
     }
 
     private void HandleSwipeInput(Vector2 direction)
@@ -60,6 +63,11 @@ public class GridMovement : MonoBehaviour
         {
             SetColor(Color.yellow);
         }
+    }
+
+    private void OutBeat()
+    {
+        SetColor(Color.white);
     }
 
     private IEnumerator JumpToPosition(Vector3 targetPosition)
