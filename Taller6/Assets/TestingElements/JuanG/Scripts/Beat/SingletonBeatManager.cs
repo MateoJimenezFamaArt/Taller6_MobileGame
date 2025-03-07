@@ -29,8 +29,8 @@ public class SingletonBeatManager : MonoBehaviour
     }
     private void Start()
     {
-        beatInterval = 60f / bpm; // Calcula el intervalo entre beats en segundos
-        nextBeatTime = Time.time + beatInterval; // Establece el tiempo del primer beat
+        beatInterval = 60f / bpm;
+        nextBeatTime = Time.time + beatInterval;
         Debug.Log("Beat interval: " + beatInterval);
         Debug.Log("Next beat time: " + nextBeatTime);
     }
@@ -43,8 +43,7 @@ public class SingletonBeatManager : MonoBehaviour
             {
                 isOnBeat = true;
                 OnBeat?.Invoke();
-            }
-            
+            } 
         }
         else
         {
