@@ -11,6 +11,7 @@ public class SingletonBeatManager : MonoBehaviour
     private float beatInterval;
     private float nextBeatTime;
     private int beatCount = 0;
+    private bool isOnBeat = false;
 
     public event Action OnBeat;
     public event Action OutBeat;
@@ -36,13 +37,26 @@ public class SingletonBeatManager : MonoBehaviour
 
     void Update()
     {
+        if (Time.time >= nextBeatTime - 0.2f && Time.time <= nextBeatTime + 0.2f)
+        {
+            if (!isOnBeat)
+            {
+                isOnBeat = true;
+                OnBeat?.Invoke();
+            }
+            
+        }
+        else
+        {
+            isOnBeat = false;
+            OutBeat?.Invoke();
+        }
+
         if (audioSource.isPlaying && Time.time >= nextBeatTime)
         {
             beatCount++;
-            OnBeat?.Invoke();
             nextBeatTime = Time.time + beatInterval;
         }
-        OutBeat?.Invoke();
     }
     public float GetBeatInterval() => beatInterval;
     public int GetBeatCount() => beatCount;

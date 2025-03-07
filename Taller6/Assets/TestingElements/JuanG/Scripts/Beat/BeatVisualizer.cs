@@ -36,12 +36,18 @@ public class BeatVisualizerUI : MonoBehaviour
     {
         centralImage.color = beatColor;
         spriteCentral.localScale = initialScale * beatScale;
+        //DOTween.Sequence()
+        //    .Append(spriteCentral.DOScale(beatScale, SingletonBeatManager.Instance.GetBeatInterval()).SetEase(Ease.InOutSine))
+        //    .Join(centralImage.DOColor(beatColor, SingletonBeatManager.Instance.GetBeatInterval()));
     }
 
     private void OutBeat()
     {
         spriteCentral.localScale = Vector3.Lerp(spriteCentral.localScale, initialScale, animationSpeed * Time.deltaTime);
         centralImage.color = Color.Lerp(centralImage.color, normalColor, animationSpeed * Time.deltaTime);
+        //DOTween.Sequence()
+        //    .Append(spriteCentral.DOScale(initialScale, SingletonBeatManager.Instance.GetBeatInterval()).SetEase(Ease.InOutSine))
+        //    .Join(centralImage.DOColor(normalColor, SingletonBeatManager.Instance.GetBeatInterval()));
     }
     
 }
