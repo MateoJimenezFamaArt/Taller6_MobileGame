@@ -109,6 +109,7 @@ public class Laser : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             Debug.Log("has sido contagiado con sida");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
