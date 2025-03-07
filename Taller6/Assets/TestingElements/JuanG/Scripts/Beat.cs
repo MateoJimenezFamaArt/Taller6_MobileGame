@@ -15,13 +15,17 @@ public class Beat : MonoBehaviour
         set => _beatPool = value;
     }
 
+    public void Active()
+    {
+        _image.DOFade(1, 0).SetEase(Ease.Linear).OnComplete(() => Deactive());
+    }
+
     public void Deactive()
     {
         DOTween.Sequence()
             .Join(_transform.DOAnchorPosX(0, 1).SetEase(Ease.InOutSine))
-            .Join(_image.DOFade(1, 1).SetEase(Ease.Linear))
+            .Join(_image.DOFade(0, 1).SetEase(Ease.Linear))
             .OnComplete(() => _beatPool.Release(this));
-
     }
 
 }

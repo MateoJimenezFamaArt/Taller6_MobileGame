@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Pool;
+using DG.Tweening;
 
 public class BeatVisualizerUI : MonoBehaviour
 {
@@ -11,10 +12,6 @@ public class BeatVisualizerUI : MonoBehaviour
     public float beatScale = 1.5f;
     public float animationSpeed = 5f;
     private Vector3 initialScale;
-
-    
-
-
 
     private void Start()
     {
@@ -38,10 +35,7 @@ public class BeatVisualizerUI : MonoBehaviour
         if (BeatManager.IsOnBeat()) return;
         // Volver al tamaño normal
         spriteCentral.localScale = Vector3.Lerp(spriteCentral.localScale, initialScale, animationSpeed * Time.deltaTime);
-
-        // Volver al color normal
         centralImage.color = Color.Lerp(centralImage.color, normalColor, animationSpeed * Time.deltaTime);
-
     }
     private void OnBeat()
     {
