@@ -29,7 +29,7 @@ public class BeatExploder : MonoBehaviour
         objectRenderer.material.color = warningColor; // Start as warning color
 
         // Subscribe to BeatManager events
-        BeatManager.OnBeat += OnBeat;
+        SingletonBeatManager.Instance.OnBeat += OnBeat;
     }
 
     void Start()
@@ -107,7 +107,7 @@ public class BeatExploder : MonoBehaviour
     void OnDisable()
     {
         // Unsubscribe to prevent memory leaks
-        BeatManager.OnBeat -= OnBeat;
+        SingletonBeatManager.Instance.OnBeat -= OnBeat;
     }
 
     void OnDrawGizmos()
