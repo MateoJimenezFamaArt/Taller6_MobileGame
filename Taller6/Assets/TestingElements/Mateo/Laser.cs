@@ -10,7 +10,7 @@ public class Laser : MonoBehaviour
     public Color activeColor = Color.red; // Color cuando se activa
     public float fadeOutTime = 1f; // Tiempo antes de regresar a la piscina
 
-    private Renderer objectRenderer;
+    private LineRenderer objectRenderer;
     private Vector3 initialScale;
     private int beatCounter = 0;
     private bool hasExploded = false;
@@ -19,7 +19,7 @@ public class Laser : MonoBehaviour
 
     void OnEnable()
     {
-        if (objectRenderer == null) objectRenderer = GetComponent<Renderer>();
+        if (objectRenderer == null) objectRenderer = GetComponent<LineRenderer>();
         if (boxCollider == null) boxCollider = GetComponent<BoxCollider>();
 
         // Reset values when reused from pool
@@ -36,7 +36,7 @@ public class Laser : MonoBehaviour
 
     void Start()
     {
-        objectRenderer = GetComponent<Renderer>();
+        objectRenderer = GetComponent<LineRenderer>();
         initialScale = transform.localScale;
 
         // Find LaserSpawner to return to pool

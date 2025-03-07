@@ -13,7 +13,7 @@ public class LaserSpawner : MonoBehaviour
     private List<Transform> spawnPoints;
     private BeatManager beatManager;
     [SerializeField] private ParticleSystem laserParticles;
-    [SerializeField] private ParticleSystem laserParticlesInstance;
+    private ParticleSystem laserParticlesInstance;
 
     void Start()
     {
