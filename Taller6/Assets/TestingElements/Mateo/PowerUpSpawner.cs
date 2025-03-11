@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class PowerUpSpawner : MonoBehaviour
 {
-    public GameObject spawnPrefab;
-    public int poolSize = 20;
-    public int maxObjectsOnGrid = 10; // Max objects active at once
+      [SerializeField] private  GameObject spawnPrefab;
+      [SerializeField] private  int poolSize = 20;
+      [SerializeField] private  int maxObjectsOnGrid = 1; // Max objects active at once
 
     private Queue<GameObject> objectPool = new Queue<GameObject>();
     private List<GameObject> activeObjects = new List<GameObject>();
@@ -86,7 +86,7 @@ public class PowerUpSpawner : MonoBehaviour
         activeObjects.Add(obj);
 
         // Auto return object after some time
-        StartCoroutine(ReturnAfterTime(obj, beatManager.GetBeatInterval() * 8));
+        //StartCoroutine(ReturnAfterTime(obj, beatManager.GetBeatInterval() * 8));
     }
 
     IEnumerator ReturnAfterTime(GameObject obj, float time)

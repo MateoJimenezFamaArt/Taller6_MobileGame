@@ -754,7 +754,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599039619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cea78f8cff75a094799324919b6c1730, type: 3}
   m_Name: 
@@ -775,6 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 1837066907865776296, guid: 0543b3a9827856749846a4a957f29706, type: 3}
+  borderTilePrefab: {fileID: 1837066907865776296, guid: 74331ce6e6a4dd1468a34b9606348332, type: 3}
   gridSize: 8
   spacing: 2
 --- !u!114 &599039625
@@ -798,7 +799,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599039619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95907bd943e18a4486359bedfadfb0c, type: 3}
   m_Name: 
@@ -832,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d75e2d0b1867245b3a2e6b2c41f512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPrefab: {fileID: 2910712869818434245, guid: 445e2a40689b0a64e8d931516ba00c72, type: 3}
+  spawnPrefab: {fileID: 2121027086255337038, guid: df1e0da856e7865449fc605d88705ce7, type: 3}
   poolSize: 20
   maxObjectsOnGrid: 1
 --- !u!1 &849365966

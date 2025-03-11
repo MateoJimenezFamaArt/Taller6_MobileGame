@@ -4,46 +4,56 @@ using System.Collections;
 
 public class PowerUp : MonoBehaviour
 {
-    public float explosionRadius = 3f; // Radius of the explosion
-    public int explosionDelayBeats = 3; // Explodes on the third beat
-    public Color warningColor = Color.blue; // Warning color before explosion
-    public Color explodeColor = Color.red; // Color at explosion
-    public float scaleIncreasePerBeat = 0.5f; // How much the object grows each beat
-    public float fadeOutTime = 0.5f; // Time before returning to pool
+    [SerializeField] private int explosionDelayBeats = 12;
+    [SerializeField] private Color warningColor = Color.blue;
+    [SerializeField] private Color explodeColor = Color.red;
+    [SerializeField] private float scaleIncreasePerBeat = 0.1f;
+    [SerializeField] private float fadeOutTime = 0.5f;
+
+    [SerializeField] private GameObject explosionEffectPrefab; // NUEVO: Prefab de explosión
 
     private Renderer objectRenderer;
-    private Vector3 initialScale;
+    private Vector3 initialScale; // NUEVO: Escala inicial como referencia
     private int beatCounter = 0;
     private bool hasExploded = false;
-    private bool isFadingOut = false; // Nueva variable para evitar múltiples corutinas
-    private ObjectSpawner objectSpawner; // Reference to return to pool
+    private bool isFadingOut = false;
+    private PowerUpSpawner powerUpSpawner;
     private PlayerScore playerScore;
+
+    // NUEVO: Límites de etapas
+    private int initialStageLimit;
+    private int middleStageLimit;
+    private int finalStageLimit;
 
     void OnEnable()
     {
         if (objectRenderer == null) objectRenderer = GetComponent<Renderer>();
 
-        // Reset values when reused from pool
         beatCounter = 0;
         hasExploded = false;
-        isFadingOut = false; // Reiniciar flag cuando se reactive el objeto
-        transform.localScale = initialScale;
-        objectRenderer.material.color = warningColor; // Start as warning color
+        isFadingOut = false;
 
-        // Subscribe to BeatManager events
+        // NUEVO: Guardar escala inicial y calcular límites de etapas
+        initialScale = transform.localScale;
+
+        initialStageLimit = explosionDelayBeats / 3;
+        middleStageLimit = initialStageLimit * 2;
+        finalStageLimit = explosionDelayBeats - 1;
+
+        transform.localScale = initialScale; // Empieza con su escala inicial
+        objectRenderer.material.color = warningColor;
+
         BeatManager.OnBeat += OnBeat;
     }
 
     void Start()
     {
         objectRenderer = GetComponent<Renderer>();
-        initialScale = transform.localScale;
 
-        // Find ObjectSpawner to return to pool
-        objectSpawner = FindObjectOfType<ObjectSpawner>();
+        powerUpSpawner = FindObjectOfType<PowerUpSpawner>();
         playerScore = FindObjectOfType<PlayerScore>();
-        
-        if (objectSpawner == null)
+
+        if (powerUpSpawner == null)
         {
             Debug.LogError("BeatExploder: No ObjectSpawner found in scene!");
             return;
@@ -53,26 +63,34 @@ public class PowerUp : MonoBehaviour
             Debug.LogError("PlayerScore: No PlayerScore found in scene!");
             return;
         }
-    
 
-    StartCoroutine(ScoreOverTime());
-}
-
-IEnumerator ScoreOverTime()
-{
-    while (true) // Se repite indefinidamente
-    {
-        yield return new WaitForSeconds(1f);
-        playerScore.AddScore(1);
+        StartCoroutine(ScoreOverTime());
     }
-}
+
+    IEnumerator ScoreOverTime()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            //playerScore.AddScore(1);
+        }
+    }
 
     void OnBeat()
     {
-        if (hasExploded) return; // Evita múltiples explosiones
+        if (hasExploded) return;
 
         beatCounter++;
-        transform.localScale += Vector3.one * scaleIncreasePerBeat; // Increase size
+
+        // Reducción de escala según la etapa
+        if (beatCounter == initialStageLimit)
+        {
+            transform.localScale = initialScale - (Vector3.one * scaleIncreasePerBeat);
+        }
+        else if (beatCounter == middleStageLimit)
+        {
+            transform.localScale = initialScale - (Vector3.one * scaleIncreasePerBeat * 2);
+        }
 
         if (beatCounter >= explosionDelayBeats)
         {
@@ -82,56 +100,42 @@ IEnumerator ScoreOverTime()
 
     void Explode()
     {
-        if (hasExploded) return; // Verificación adicional por seguridad
-        hasExploded = true; // Marcar como explotado para evitar múltiples activaciones
+        if (hasExploded) return;
+        hasExploded = true;
 
-        // Fade out & return to pool
-        StartCoroutine(FadeOutAndReturn());
+        // NUEVO: Instanciar la explosión visual
+        if (explosionEffectPrefab != null)
+        {
+            Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+        }
+
+        powerUpSpawner.ReturnToPool(gameObject); // Return to pool sin fade
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("+score");
-            playerScore.AddScore(2);
-            StartCoroutine(FadeOutAndReturn()); // Ahora está protegido contra múltiples ejecuciones
+            int scoreToAdd = 2; // Puntaje por defecto
+
+            if (beatCounter <= initialStageLimit)
+            {
+                scoreToAdd = 6;
+            }
+            else if (beatCounter <= middleStageLimit)
+            {
+                scoreToAdd = 4;
+            }
+
+            playerScore.AddScore(scoreToAdd);
+            Debug.Log($"+{scoreToAdd} puntos");
+
+            Explode(); // Ahora usa Explode() en lugar del FadeOutAndReturn
         }
-    }
-
-    IEnumerator FadeOutAndReturn()
-    {
-        if (isFadingOut) yield break; // Evita múltiples activaciones de la corutina
-        isFadingOut = true;
-
-        float elapsedTime = 0;
-        Color startColor = objectRenderer.material.color;
-        Vector3 startScale = transform.localScale;
-
-        while (elapsedTime < fadeOutTime)
-        {
-            float t = elapsedTime / fadeOutTime;
-            objectRenderer.material.color = Color.Lerp(startColor, Color.clear, t);
-            transform.localScale = Vector3.Lerp(startScale, Vector3.zero, t);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.localScale = initialScale; // Reset scale
-        objectSpawner.ReturnToPool(gameObject); // Return to object pool
-        isFadingOut = false; // Reset flag para futuras activaciones
     }
 
     void OnDisable()
     {
-        // Unsubscribe to prevent memory leaks
         BeatManager.OnBeat -= OnBeat;
-    }
-
-    void OnDrawGizmos()
-    {
-        // Draw explosion radius in Scene View
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }
