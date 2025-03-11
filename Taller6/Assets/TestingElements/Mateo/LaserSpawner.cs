@@ -10,7 +10,7 @@ public class LaserSpawner : MonoBehaviour
 
     private Queue<GameObject> objectPool = new Queue<GameObject>();
     private List<GameObject> activeObjects = new List<GameObject>();
-    private List<Transform> spawnPoints;
+    private List<Transform> borderspawnPoints;
     private BeatManager beatManager;
     [SerializeField] private ParticleSystem laserParticles;
     private ParticleSystem laserParticlesInstance;
@@ -31,7 +31,7 @@ public class LaserSpawner : MonoBehaviour
             return;
         }
 
-        spawnPoints = gridManager.GetSpawnPoints();
+        borderspawnPoints = gridManager.GetBorderSpawnPoints();
         InitializePool();
 
         // Subscribe to the beat event
@@ -82,12 +82,12 @@ GameObject GetPooledObject()
 
 void SpawnObjectOnBeat()
 {
-    if (spawnPoints.Count == 0 || activeObjects.Count >= maxObjectsOnGrid) return;
+    if (borderspawnPoints.Count == 0 || activeObjects.Count >= maxObjectsOnGrid) return;
 
     // Filtrar solo los puntos en los bordes (fila 0, 7 y columna 0, 7)
     List<Transform> borderSpawnPoints = new List<Transform>();
 
-    foreach (Transform point in spawnPoints)
+    foreach (Transform point in borderspawnPoints)
     {
         Vector3 pos = point.position;
 

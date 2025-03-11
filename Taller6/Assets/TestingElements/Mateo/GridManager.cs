@@ -41,16 +41,25 @@ public class GridManager : MonoBehaviour
                 // Determinar si es borde o centro
                 if (x == 0 || x == expandedSize - 1 || y == 0 || y == expandedSize - 1)
                 {
-                    tile = Instantiate(borderTilePrefab, tilePosition, Quaternion.identity);
-                    borderSpawnPoints.Add(point.transform); // Guardar spawn point azul
+                    if (x == 0 && y ==0 || x == 0 && y == expandedSize - 1 || x == expandedSize - 1 && y == 0 || x == expandedSize - 1 && y == expandedSize -1) 
+                    {
+                        
+                    }
+                    else 
+                    {
+                        tile = Instantiate(borderTilePrefab, tilePosition, Quaternion.identity);
+                        borderSpawnPoints.Add(point.transform); // Guardar spawn point azul
+                    }
+                    
                 }
                 else
                 {
                     tile = Instantiate(tilePrefab, tilePosition, Quaternion.identity);
                     spawnPoints.Add(point.transform); // Guardar spawn point rojo
+                    tile.transform.parent = transform;
                 }
 
-                tile.transform.parent = transform;
+                
             }
         }
     }
