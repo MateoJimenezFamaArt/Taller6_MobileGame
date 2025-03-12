@@ -1,6 +1,8 @@
 using UnityEngine;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class LaserSpawner : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class LaserSpawner : MonoBehaviour
     private BeatManager beatManager;
     [SerializeField] private ParticleSystem laserParticles;
     private ParticleSystem laserParticlesInstance;
+    public LineRenderer lineRenderer;
 
     void Start()
     {
@@ -30,6 +33,8 @@ public class LaserSpawner : MonoBehaviour
             Debug.LogError("ObjectSpawner: No GridManager found!");
             return;
         }
+
+        lineRenderer = GetComponent<LineRenderer>();
 
         borderspawnPoints = gridManager.GetBorderSpawnPoints();
         InitializePool();
@@ -84,51 +89,75 @@ void SpawnObjectOnBeat()
 {
     if (borderspawnPoints.Count == 0 || activeObjects.Count >= maxObjectsOnGrid) return;
 
-    // Filtrar solo los puntos en los bordes (fila 0, 7 y columna 0, 7)
     List<Transform> borderSpawnPoints = new List<Transform>();
+    float mostCommonX1, mostCommonX2;
+    float mostCommonY1, mostCommonY2;
 
-    foreach (Transform point in borderspawnPoints)
-    {
-        Vector3 pos = point.position;
+    Dictionary<float, int> conteoX = new Dictionary<float, int>();
+    Dictionary<float, int> conteoY = new Dictionary<float, int>();
 
-        // Convertir coordenadas del mundo a índices de la grid
-        int x = Mathf.RoundToInt((pos.x - transform.position.x) / 2) + 4;
-        int y = Mathf.RoundToInt((pos.z - transform.position.z) / 2) + 4;
-
-        if (x == 0 || x == 7 || y == 0 || y == 7) // Solo bordes
+        foreach (Transform point in borderspawnPoints)
         {
-            borderSpawnPoints.Add(point);
+            float x = point.position.x;
+            float y = point.position.y;
+
+            if (conteoX.ContainsKey(x)) conteoX[x]++;
+            else conteoX[x] = 1;
+
+            if (conteoY.ContainsKey(y)) conteoY[y]++;
+            else conteoY[y] = 1;
         }
-    }
 
-    if (borderSpawnPoints.Count == 0) return; // Si no hay puntos válidos, salir
+        mostCommonX1 = conteoX.OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
+        mostCommonX2 = conteoX.OrderByDescending(kv => kv.Value).Skip(1).Select(kv => kv.Key).FirstOrDefault();
 
-    // Seleccionar un punto aleatorio de los bordes
-    Transform spawnPoint = borderSpawnPoints[Random.Range(0, borderSpawnPoints.Count)];
-    GameObject obj = GetPooledObject();
-    obj.transform.position = spawnPoint.position;
-    laserParticlesInstance = Instantiate(laserParticles,obj.transform);
+        mostCommonY1 = conteoY.OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
+        mostCommonY2 = conteoY.OrderByDescending(kv => kv.Value).Skip(1).Select(kv => kv.Key).FirstOrDefault();
 
-    // Decidir aleatoriamente si el láser será vertical u horizontal
-    bool isHorizontal = Random.value > 0.5f;
+        Transform spawnPoint = borderSpawnPoints[Random.Range(0, (borderSpawnPoints.Count - 1))];
 
-    if (isHorizontal)
-    {
-        obj.transform.rotation = Quaternion.Euler(0, 90, 0); // Girar 90° en Y
-        
-    }
-    else
-    {
-        obj.transform.rotation = Quaternion.identity; // Mantener vertical
-       
-    }
+        Vector3 spawnPosition = spawnPoint.transform.position;
 
-    obj.name = "SpawnedLaser_" + activeObjects.Count;
-    activeObjects.Add(obj);
-    StartCoroutine(ReturnAfterTime(obj, beatManager.GetBeatInterval() * 8));
+        GameObject obj = GetPooledObject();
+        obj.transform.position = spawnPoint.position;
+        obj.name = "SpawnedLaser_" + activeObjects.Count;
+        activeObjects.Add(obj);
+
+        lineRenderer.SetPosition(0,spawnPosition);
+
+        if (spawnPoint.position.x == mostCommonX1 || spawnPoint.position.x == mostCommonX2) 
+        {
+            foreach (Transform point in borderspawnPoints) 
+            {
+                float x = point.position.x;
+                float y = point.position.y;
+
+                if(y == spawnPoint.position.y && x != spawnPoint.position.x) 
+                {
+                    Vector3 endPosition = point.position;
+                    lineRenderer.SetPosition(1,endPosition);
+                }
+            }
+        }
+        else if (spawnPoint.position.y == mostCommonY1 || spawnPoint.position.y == mostCommonY2) 
+        {
+            foreach (Transform point in borderspawnPoints)
+            {
+                float x = point.position.x;
+                float y = point.position.y;
+
+                if (x == spawnPoint.position.x && y != spawnPoint.position.y)
+                {
+                    Vector3 endPosition = point.position;
+                    lineRenderer.SetPosition(1, endPosition);
+                }
+            }
+        }
+
+        laserParticlesInstance = Instantiate(laserParticles, spawnPoint.transform);
+
+        StartCoroutine(ReturnAfterTime(obj, beatManager.GetBeatInterval() * 8));      
 }
-
-
 
 
     IEnumerator ReturnAfterTime(GameObject obj, float time)
