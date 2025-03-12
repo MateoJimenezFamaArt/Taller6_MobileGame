@@ -53,7 +53,6 @@ public class Laser : MonoBehaviour
         if (hasExploded) return;
 
         beatCounter++;
-        Debug.Log("xd");
         transform.localScale += new Vector3(scaleIncreasePerBeat, scaleIncreasePerBeat, 0);
 
         if (beatCounter >= explosionDelayBeats)

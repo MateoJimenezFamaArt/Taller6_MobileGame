@@ -87,28 +87,28 @@ void SpawnObjectOnBeat()
 
     //List<Transform> borderSpawnPoints = new List<Transform>();
     float mostCommonX1, mostCommonX2;
-    float mostCommonY1, mostCommonY2;
+    float mostCommonZ1, mostCommonZ2;
 
     Dictionary<float, int> conteoX = new Dictionary<float, int>();
-    Dictionary<float, int> conteoY = new Dictionary<float, int>();
+    Dictionary<float, int> conteoZ = new Dictionary<float, int>();
 
         foreach (Transform point in borderspawnPoints)
         {
             float x = point.position.x;
-            float y = point.position.y;
+            float z = point.position.z;
 
             if (conteoX.ContainsKey(x)) conteoX[x]++;
             else conteoX[x] = 1;
 
-            if (conteoY.ContainsKey(y)) conteoY[y]++;
-            else conteoY[y] = 1;
+            if (conteoZ.ContainsKey(z)) conteoZ[z]++;
+            else conteoZ[z] = 1;
         }
 
         mostCommonX1 = conteoX.OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
         mostCommonX2 = conteoX.OrderByDescending(kv => kv.Value).Skip(1).Select(kv => kv.Key).FirstOrDefault();
 
-        mostCommonY1 = conteoY.OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
-        mostCommonY2 = conteoY.OrderByDescending(kv => kv.Value).Skip(1).Select(kv => kv.Key).FirstOrDefault();
+        mostCommonZ1 = conteoZ.OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
+        mostCommonZ2 = conteoZ.OrderByDescending(kv => kv.Value).Skip(1).Select(kv => kv.Key).FirstOrDefault();
 
         Transform spawnPoint = borderspawnPoints[Random.Range(0, borderspawnPoints.Count)];
 
@@ -122,32 +122,35 @@ void SpawnObjectOnBeat()
         LineRenderer lineRenderer = obj.GetComponent<LineRenderer>();
 
         lineRenderer.SetPosition(0,spawnPosition);
+        Debug.Log("spawn position: " + spawnPosition);
 
         if (spawnPoint.position.x == mostCommonX1 || spawnPoint.position.x == mostCommonX2) 
         {
             foreach (Transform point in borderspawnPoints) 
             {
                 float x = point.position.x;
-                float y = point.position.y;
+                float z = point.position.z;
 
-                if(y == spawnPoint.position.y && x != spawnPoint.position.x) 
+                if(z == spawnPoint.position.z && x != spawnPoint.position.x) 
                 {
                     Vector3 endPosition = point.position;
                     lineRenderer.SetPosition(1,endPosition);
+                    Debug.Log("end position: " + endPosition);
                 }
             }
         }
-        else if (spawnPoint.position.y == mostCommonY1 || spawnPoint.position.y == mostCommonY2) 
+        else if (spawnPoint.position.z == mostCommonZ1 || spawnPoint.position.z == mostCommonZ2) 
         {
             foreach (Transform point in borderspawnPoints)
             {
                 float x = point.position.x;
-                float y = point.position.y;
+                float z = point.position.z;
 
-                if (x == spawnPoint.position.x && y != spawnPoint.position.y)
+                if (x == spawnPoint.position.x && z != spawnPoint.position.z)
                 {
                     Vector3 endPosition = point.position;
                     lineRenderer.SetPosition(1, endPosition);
+                    Debug.Log("end position: " + endPosition);
                 }
             }
         }
