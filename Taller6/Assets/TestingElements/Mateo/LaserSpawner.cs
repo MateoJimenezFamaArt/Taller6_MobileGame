@@ -115,11 +115,18 @@ void SpawnObjectOnBeat()
         Vector3 spawnPosition = spawnPoint.transform.position;
 
         GameObject obj = GetPooledObject();
-        obj.transform.position = spawnPoint.position;
+        obj.transform.position = new Vector3(spawnPoint.position.x, 1, spawnPoint.position.z);       
         obj.name = "SpawnedLaser_" + activeObjects.Count;
         activeObjects.Add(obj);
 
         LineRenderer lineRenderer = obj.GetComponent<LineRenderer>();
+        //BoxCollider boxCollider = obj.GetComponent<BoxCollider>();
+
+        //cambiooooo
+        if (lineRenderer != null)
+        {
+            lineRenderer.useWorldSpace = true;
+        }
 
         lineRenderer.SetPosition(0,spawnPosition);
         Debug.Log("spawn position: " + spawnPosition);
@@ -135,7 +142,7 @@ void SpawnObjectOnBeat()
                 {
                     Vector3 endPosition = point.position;
                     lineRenderer.SetPosition(1,endPosition);
-                    Debug.Log("end position: " + endPosition);
+                    obj.transform.Rotate(0, 90, 0);
                 }
             }
         }
@@ -150,7 +157,6 @@ void SpawnObjectOnBeat()
                 {
                     Vector3 endPosition = point.position;
                     lineRenderer.SetPosition(1, endPosition);
-                    Debug.Log("end position: " + endPosition);
                 }
             }
         }
