@@ -1,0 +1,263 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6940cdda447048efa58605bd546f9920, type: 3}
+  m_Name: download (2)
+  m_EditorClassIdentifier: 
+  Frames:
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 54a6ecb487b78b5498ebc9d49ccfb7c7, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 9d50eeed391c3f448a3f981e354b5df6, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 698c5812079caa54c8ed93fdf25bba0b, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 3f87a67401655884d89ae8c10cf9efc4, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 394266f6ca46bfb4fa4de80a368dab54, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 0f6946dd471d0c94890894d719902a2d, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 553ea095facc97e4fa2fd0449372f367, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 87febd81d2dc2734e99a0d28b23e1dee, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: f4a0b40ce8541dc40a0773e1647c5e66, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 74665f9a66f405c4694314b8a7df0f9d, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: aeaaffc46a9426243983f8ad1c205b72, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 1959d2613bf0bfc43a6992dfa272513b, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: d28d1fd7c1169ec45a10423da3a46412, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 0455cc526f288014f83d299c02c59367, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 47f8713d6d02dec4ab585642b187f2ee, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: eb54f90ded764fd4c892c0974c28b924, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 7b525dc02a60e6f47b71a1b21158e46a, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 295af5f2f33bb3d47954ae3c345535cc, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 513690e52b1559a499bce7c252694454, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 807eea39b14cd1e4ea8a59ab4ada5aa5, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 9367aba4a7a3ec141bb08986accfdb8a, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: c9c023bd8e632cb4e88a198133744b78, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 0a1b6e79607af264aa1b5e662b5bd27d, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 7451449c1c83805418a0243bb3b98b1a, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 263cfa5cb5a393240bbfba3054cbaaea, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: eddb028264218d144861d4362aa628a4, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 5151de951060fb34c94d4b04cb1eb1e0, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 9d91e00ca95d4d441b3d971688f4ca1d, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 17f53b061bc98ae44a7345d19dc30f66, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 4a47708469dcce344835627b850a4c9c, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: aef30d54139dd3a4bbaf47aa517cc739, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 478736c7e7d38254e930b2b1b148e420, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: c30b2a34b81303e4cb1d7d1bc18aebeb, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 92a2cdc862542284d9535582fb720cf1, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 3b9a5cdcec18e394cb9a1073d53dd063, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 3b51b199142a6624187f83d9dc3fc3e1, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 45132a9a139ae8c438a0bcce6c448173, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: c47a7d78f0aa2244eb4b495479939796, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 060be8a4e4669c0448ea386a3f4a5818, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: c8d343b4b75f82d46bfdc84a40e9d2c1, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: a46b4e0faa9556041a270e51d599bf1b, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 4df62dbdd39eee544925a64d10648020, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 29d06325a489aed41ae5adff8f9f5056, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 5d774f176fafe8343ac0884c0fc06511, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: ce7433e3cc33db941af7f93f933190b5, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 0b5b2f0b6c9b7dd429b05b7febd28f18, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: ac2c578b048b3bf43bbf00ae030c01d5, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 3e3eea392a380c146904ea11b2055cd9, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: aca1ff4b0db36074783e9dd95e7384a0, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 0f7dd6389f27d8c4bb7f038b3718722f, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 71548b1ef4c13974b82848457aa91a37, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 5f23e7d56b5992f488d11745a69c6d32, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: a23faa9a5f0af0c45a13318bcb890cf7, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 57eec2af457fa92469260a536544938e, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 1b5b69d947c42b54b95eba2f57069677, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 1f2b4db2875db834caf35dcb523018c8, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 02545e50d92f6b447882959b66a4dc68, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: ff3d318f45750c54783acc52cbd75e10, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 6676cca7e5d8c3045b2e479b4eb18d60, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: a4d4a15b750c3c3429347fd2d77eeb88, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: dfba97f67511b4e448e37d3cb1dc8a1c, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: d94c403e136621a4c9639fa991c98d3a, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: dd620e1359e795d4a87d37872250e12f, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: d77ae19a974ade848a48074d2b7b6020, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 96799d755a24e43459c25850cf4e2026, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: a89b2d72bb093304ca384b075287b265, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: dad1766aebbad344b8a07a7b9ab2037e, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: b5dda924083017d4d84e9aa48f73df06, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: c3ea7f7af4e19ce4f97de8cd6ec35a01, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: e03db6d44940b2c478ccb0bbcfef2b47, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: cb0ba3212387fd34c978e03574318b8e, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 37300cfd58d444b408982ae73ca40e5f, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 06401d1223c269149a207cccb6a077d2, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: a67bcf54d1a5049489c7e8bb2854cbfe, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 5a6a7fec591d98747a6a44120256535e, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 8e19a79fc98c6d144a4dbc2b3d117e27, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 486e0b213b8dd16498be60775bf6b99d, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: f832ee856ccc4014b925ac56b91915e3, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 03a850d751f0a65489707f7189339448, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 88ec7ac8fca379a4692233d4116b3d95, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 1b232416d529db546adbe02e8e4ad768, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 23b87dff36ce6014493ccb43f7c4c487, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: d86db2151157c5f4cb84af1742356eee, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: c3b08ee2a193d714abc6f0b4262e05a8, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 5605dc842245f1b43b8d698d6e2003ba, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 6302cc35f45e81c4ca50de2f6ce65c43, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: c7706e2a301d84a408bd29a551f03bd8, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 40a942096f13f074fa3c78af236dd2e2, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: e3cf2fec751b0d84888b5e2fbc6a3dd5, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 9a620baa5d47e2944a9f2aa1fc3cc9c4, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 3ef8109d5bf4c8140904ad1786ee60fb, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 33cc6360dc214be479fc910084389a3e, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: edbb5fd151b422f4490d1aa4c803f642, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: c582059ca54d9d042b15f856d8963ddf, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 92eccd0a5dcec6f4dbd0e1ea55b0e471, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 3ad366029bcceba499b716c01b0b553a, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 16d2af8d849cbe645b2040f32b5ae54b, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 28ff433705e192648b940ab328267478, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 5d4b28b738d9c104db88a8e0189b370d, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 4cf868df4c8761a459c6186efc0661ce, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: ce592468e714e4349b719f551f6ceea1, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 134e45c240a571a479e5f1b60409ae09, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 2aa5d304e6f7e814ba8b27b8fb0f64ec, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: f5636b75df6e2164b888c5ffff837a7b, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: d5865df34e4c4e649a1f1ce2ef6d3d42, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 3422eda4ba37be94bb07dd579b6b9a3e, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 1a1d22db6cdc79f408ae62c6ec9afa7a, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: bdd440d0c71eae341884918af5ee2ac1, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 422d279d5e924324b93b5f0eadf6d79a, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: ab79e9a98c018e44383c15eef6509e8c, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 3642fe6e7347c1e4eb4e6a68283b5714, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: dd817311f65eec94185c02542577c755, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: e39f321ccf162d54f9882a66cf11e02d, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 83b1a539da41c344f9cb219fb66eafb7, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 933782e91b388494ab2c289786556fce, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: e0c5019f33f1d6742a18948ffc70bff5, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 94af9fc8a2274e8469c5526799ab218e, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: b682dd62418379c4c81d5b6cd68d9b2f, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 17f31984554d7ca4fb0655bbc49a318d, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 03af20b04a6a58545a599371fccc2401, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: f7b07f1078beeea4f84d4cbb5f681734, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 90d2bd7bf08cee945930c4ae1d3657da, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 95944932d0a8ede4996ca0804422ac08, type: 3}
+  - DelayInMs: 40
+    Sprite: {fileID: 21300000, guid: 73cbadaf711661f4fb30a3fb61f69181, type: 3}
