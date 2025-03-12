@@ -16,8 +16,6 @@ public class LaserSpawner : MonoBehaviour
     private BeatManager beatManager;
     [SerializeField] private ParticleSystem laserParticles;
     private ParticleSystem laserParticlesInstance;
-    public LineRenderer lineRenderer;
-
     void Start()
     {
         beatManager = FindObjectOfType<BeatManager>();
@@ -33,8 +31,6 @@ public class LaserSpawner : MonoBehaviour
             Debug.LogError("ObjectSpawner: No GridManager found!");
             return;
         }
-
-        lineRenderer = GetComponent<LineRenderer>();
 
         borderspawnPoints = gridManager.GetBorderSpawnPoints();
         InitializePool();
@@ -89,7 +85,7 @@ void SpawnObjectOnBeat()
 {
     if (borderspawnPoints.Count == 0 || activeObjects.Count >= maxObjectsOnGrid) return;
 
-    List<Transform> borderSpawnPoints = new List<Transform>();
+    //List<Transform> borderSpawnPoints = new List<Transform>();
     float mostCommonX1, mostCommonX2;
     float mostCommonY1, mostCommonY2;
 
@@ -114,7 +110,7 @@ void SpawnObjectOnBeat()
         mostCommonY1 = conteoY.OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
         mostCommonY2 = conteoY.OrderByDescending(kv => kv.Value).Skip(1).Select(kv => kv.Key).FirstOrDefault();
 
-        Transform spawnPoint = borderSpawnPoints[Random.Range(0, (borderSpawnPoints.Count - 1))];
+        Transform spawnPoint = borderspawnPoints[Random.Range(0, borderspawnPoints.Count)];
 
         Vector3 spawnPosition = spawnPoint.transform.position;
 
@@ -122,6 +118,8 @@ void SpawnObjectOnBeat()
         obj.transform.position = spawnPoint.position;
         obj.name = "SpawnedLaser_" + activeObjects.Count;
         activeObjects.Add(obj);
+
+        LineRenderer lineRenderer = obj.GetComponent<LineRenderer>();
 
         lineRenderer.SetPosition(0,spawnPosition);
 
