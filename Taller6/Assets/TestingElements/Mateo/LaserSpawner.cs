@@ -129,7 +129,6 @@ void SpawnObjectOnBeat()
         }
 
         lineRenderer.SetPosition(0,spawnPosition);
-        Debug.Log("spawn position: " + spawnPosition);
 
         if (spawnPoint.position.x == mostCommonX1 || spawnPoint.position.x == mostCommonX2) 
         {

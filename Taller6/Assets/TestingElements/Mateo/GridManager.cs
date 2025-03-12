@@ -32,12 +32,15 @@ public class GridManager : MonoBehaviour
             for (int y = 0; y < expandedSize; y++)
             {
                 Vector3 tilePosition = startPosition + new Vector3(x * spacing, 0, y * spacing);
+                Vector3 bordertilesposition = tilePosition + new Vector3(0, 1, 0);
 
                 GameObject tile;
                 GameObject point = new GameObject("SpawnPoint_" + (x * expandedSize + y));
                 point.transform.position = tilePosition;
                 point.transform.parent = transform;
-
+                GameObject borderpoint = new GameObject("SpawnPoint_" + (x * expandedSize + y));
+                borderpoint.transform.position = bordertilesposition;
+                borderpoint.transform.parent = transform;
                 // Determinar si es borde o centro
                 if (x == 0 || x == expandedSize - 1 || y == 0 || y == expandedSize - 1)
                 {
@@ -47,8 +50,8 @@ public class GridManager : MonoBehaviour
                     }
                     else 
                     {
-                        tile = Instantiate(borderTilePrefab, tilePosition, Quaternion.identity);
-                        borderSpawnPoints.Add(point.transform); // Guardar spawn point azul
+                        tile = Instantiate(borderTilePrefab, bordertilesposition, Quaternion.identity);
+                        borderSpawnPoints.Add(borderpoint.transform); // Guardar spawn point azul
                     }
                     
                 }
