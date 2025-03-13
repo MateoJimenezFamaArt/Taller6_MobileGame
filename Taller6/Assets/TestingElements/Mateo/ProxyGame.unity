@@ -754,7 +754,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599039619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cea78f8cff75a094799324919b6c1730, type: 3}
   m_Name: 
@@ -808,7 +808,6 @@ MonoBehaviour:
   poolSize: 20
   maxObjectsOnGrid: 1
   laserParticles: {fileID: 3969164693220797109, guid: df3323975113e6e42a4e7fb9de27cdb1, type: 3}
-  lineRenderer: {fileID: 0}
 --- !u!114 &599039627
 MonoBehaviour:
   m_ObjectHideFlags: 0

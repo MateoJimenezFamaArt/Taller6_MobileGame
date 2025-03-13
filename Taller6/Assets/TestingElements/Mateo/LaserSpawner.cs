@@ -81,16 +81,16 @@ GameObject GetPooledObject()
         activeObjects.Remove(obj);
     }
 
-void SpawnObjectOnBeat()
-{
-    if (borderspawnPoints.Count == 0 || activeObjects.Count >= maxObjectsOnGrid) return;
+    void SpawnObjectOnBeat()
+    {
+        if (borderspawnPoints.Count == 0 || activeObjects.Count >= maxObjectsOnGrid) return;
 
-    //List<Transform> borderSpawnPoints = new List<Transform>();
-    float mostCommonX1, mostCommonX2;
-    float mostCommonZ1, mostCommonZ2;
+        //List<Transform> borderSpawnPoints = new List<Transform>();
+        float mostCommonX1, mostCommonX2;
+        float mostCommonZ1, mostCommonZ2;
 
-    Dictionary<float, int> conteoX = new Dictionary<float, int>();
-    Dictionary<float, int> conteoZ = new Dictionary<float, int>();
+        Dictionary<float, int> conteoX = new Dictionary<float, int>();
+        Dictionary<float, int> conteoZ = new Dictionary<float, int>();
 
         foreach (Transform point in borderspawnPoints)
         {
@@ -115,7 +115,7 @@ void SpawnObjectOnBeat()
         Vector3 spawnPosition = spawnPoint.transform.position;
 
         GameObject obj = GetPooledObject();
-        obj.transform.position = new Vector3(spawnPoint.position.x, 1, spawnPoint.position.z);       
+        obj.transform.position = new Vector3(spawnPoint.position.x, 1, spawnPoint.position.z);
         obj.name = "SpawnedLaser_" + activeObjects.Count;
         activeObjects.Add(obj);
 
@@ -128,24 +128,24 @@ void SpawnObjectOnBeat()
             lineRenderer.useWorldSpace = true;
         }
 
-        lineRenderer.SetPosition(0,spawnPosition);
+        lineRenderer.SetPosition(0, spawnPosition);
 
-        if (spawnPoint.position.x == mostCommonX1 || spawnPoint.position.x == mostCommonX2) 
+        if (spawnPoint.position.x == mostCommonX1 || spawnPoint.position.x == mostCommonX2)
         {
-            foreach (Transform point in borderspawnPoints) 
+            foreach (Transform point in borderspawnPoints)
             {
                 float x = point.position.x;
                 float z = point.position.z;
 
-                if(z == spawnPoint.position.z && x != spawnPoint.position.x) 
+                if (z == spawnPoint.position.z && x != spawnPoint.position.x)
                 {
                     Vector3 endPosition = point.position;
-                    lineRenderer.SetPosition(1,endPosition);
+                    lineRenderer.SetPosition(1, endPosition);
                     obj.transform.Rotate(0, 90, 0);
                 }
             }
         }
-        else if (spawnPoint.position.z == mostCommonZ1 || spawnPoint.position.z == mostCommonZ2) 
+        else if (spawnPoint.position.z == mostCommonZ1 || spawnPoint.position.z == mostCommonZ2)
         {
             foreach (Transform point in borderspawnPoints)
             {
@@ -160,7 +160,7 @@ void SpawnObjectOnBeat()
             }
         }
 
-        laserParticlesInstance = Instantiate(laserParticles, spawnPoint.transform);
+        laserParticlesInstance = Instantiate(laserParticles, obj.transform);
 
         StartCoroutine(ReturnAfterTime(obj, beatManager.GetBeatInterval() * 8));      
 }
