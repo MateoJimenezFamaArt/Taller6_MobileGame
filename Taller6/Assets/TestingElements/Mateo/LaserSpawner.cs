@@ -85,7 +85,6 @@ GameObject GetPooledObject()
     {
         if (borderspawnPoints.Count == 0 || activeObjects.Count >= maxObjectsOnGrid) return;
 
-        //List<Transform> borderSpawnPoints = new List<Transform>();
         float mostCommonX1, mostCommonX2;
         float mostCommonZ1, mostCommonZ2;
 
@@ -107,8 +106,14 @@ GameObject GetPooledObject()
         mostCommonX1 = conteoX.OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
         mostCommonX2 = conteoX.OrderByDescending(kv => kv.Value).Skip(1).Select(kv => kv.Key).FirstOrDefault();
 
+        //Debug.Log("MostCommonX1: " + mostCommonX1);
+        //Debug.Log("MostCommonX2: " + mostCommonX2);
+
         mostCommonZ1 = conteoZ.OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
         mostCommonZ2 = conteoZ.OrderByDescending(kv => kv.Value).Skip(1).Select(kv => kv.Key).FirstOrDefault();
+
+        //Debug.Log("MostCommonZ1: " + mostCommonZ1);
+        //Debug.Log("MostCommonZ2: " + mostCommonZ2);
 
         Transform spawnPoint = borderspawnPoints[Random.Range(0, borderspawnPoints.Count)];
 
@@ -120,9 +125,7 @@ GameObject GetPooledObject()
         activeObjects.Add(obj);
 
         LineRenderer lineRenderer = obj.GetComponent<LineRenderer>();
-        //BoxCollider boxCollider = obj.GetComponent<BoxCollider>();
 
-        //cambiooooo
         if (lineRenderer != null)
         {
             lineRenderer.useWorldSpace = true;
@@ -130,6 +133,9 @@ GameObject GetPooledObject()
 
         lineRenderer.SetPosition(0, spawnPosition);
 
+        Vector3 direction = Vector3.zero;
+
+        //horizontales
         if (spawnPoint.position.x == mostCommonX1 || spawnPoint.position.x == mostCommonX2)
         {
             foreach (Transform point in borderspawnPoints)
@@ -142,9 +148,13 @@ GameObject GetPooledObject()
                     Vector3 endPosition = point.position;
                     lineRenderer.SetPosition(1, endPosition);
                     obj.transform.Rotate(0, 90, 0);
+                    if (x == mostCommonX1) { direction.x = -100; }
+                    if (x == mostCommonX2) { direction.x = 100; }
+
                 }
             }
         }
+        //verticales
         else if (spawnPoint.position.z == mostCommonZ1 || spawnPoint.position.z == mostCommonZ2)
         {
             foreach (Transform point in borderspawnPoints)
@@ -156,11 +166,13 @@ GameObject GetPooledObject()
                 {
                     Vector3 endPosition = point.position;
                     lineRenderer.SetPosition(1, endPosition);
+                    if (z == mostCommonZ1) { direction.z = -100; }
+                    if (z == mostCommonZ2) { direction.z = 100; }
                 }
             }
         }
 
-        laserParticlesInstance = Instantiate(laserParticles, obj.transform);
+        laserParticlesInstance = Instantiate(laserParticles, spawnPosition, Quaternion.LookRotation(direction), obj.transform);
 
         StartCoroutine(ReturnAfterTime(obj, beatManager.GetBeatInterval() * 8));      
 }
