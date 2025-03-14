@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class GridManager : MonoBehaviour
 {
     public GameObject tilePrefab;
-    public GameObject borderTilePrefab; // Prefab para las plataformas azules
+    //public GameObject borderTilePrefab; // Prefab para las plataformas azules
     public int gridSize = 8;
     public float spacing = 2f;
 
@@ -13,11 +13,11 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-        if (tilePrefab == null || borderTilePrefab == null)
+        /*if (tilePrefab == null || borderTilePrefab == null)
         {
             Debug.LogError("GridManager: No Tile Prefab assigned!");
             return;
-        }
+        }*/
 
         GenerateGrid();
     }
@@ -50,7 +50,7 @@ public class GridManager : MonoBehaviour
                     }
                     else 
                     {
-                        tile = Instantiate(borderTilePrefab, bordertilesposition, Quaternion.identity);
+                        //tile = Instantiate(borderTilePrefab, bordertilesposition, Quaternion.identity);
                         borderSpawnPoints.Add(borderpoint.transform); // Guardar spawn point azul
                     }
                     
