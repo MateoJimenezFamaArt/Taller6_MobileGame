@@ -645,8 +645,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bb7542f27df74ce4da8a7fa9e0aa901e, type: 3}
-  m_Resource: {fileID: 8300000, guid: bb7542f27df74ce4da8a7fa9e0aa901e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e8f1992748fa3a842a8d4fb76d971db9, type: 3}
+  m_Resource: {fileID: 8300000, guid: e8f1992748fa3a842a8d4fb76d971db9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599039619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cea78f8cff75a094799324919b6c1730, type: 3}
   m_Name: 
@@ -775,7 +775,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 1837066907865776296, guid: 0543b3a9827856749846a4a957f29706, type: 3}
-  borderTilePrefab: {fileID: 1837066907865776296, guid: 74331ce6e6a4dd1468a34b9606348332, type: 3}
   gridSize: 8
   spacing: 2
 --- !u!114 &599039625
@@ -791,7 +790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 599039620}
-  BPM: 110
+  BPM: 69
 --- !u!114 &599039626
 MonoBehaviour:
   m_ObjectHideFlags: 0
