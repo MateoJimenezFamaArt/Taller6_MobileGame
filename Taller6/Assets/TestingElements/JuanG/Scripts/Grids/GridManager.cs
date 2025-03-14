@@ -8,6 +8,7 @@ public class GridManager : MonoBehaviour
     public float spacing = 2f;
 
     private List<Transform> spawnPoints = new List<Transform>();
+    private List<Transform> borderSpawnPoints = new List<Transform>();
 
     void Start()
     {
@@ -22,24 +23,49 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
-        Vector3 startPosition = transform.position - new Vector3(gridSize / 2 * spacing, 0, gridSize / 2 * spacing);
+        int expandedSize = gridSize + 2; // Tamaño expandido para incluir los bordes
+        Vector3 startPosition = transform.position - new Vector3(expandedSize / 2 * spacing, 0, expandedSize / 2 * spacing);
 
-        for (int x = 0; x < gridSize; x++)
+        for (int x = 0; x < expandedSize; x++)
         {
-            for (int y = 0; y < gridSize; y++)
+            for (int y = 0; y < expandedSize; y++)
             {
                 Vector3 tilePosition = startPosition + new Vector3(x * spacing, 0, y * spacing);
-                
-                GameObject tile = Instantiate(tilePrefab, tilePosition, Quaternion.identity);
-                tile.transform.parent = transform;
+                Vector3 bordertilesposition = tilePosition + new Vector3(0, 1, 0);
 
-                GameObject point = new GameObject("SpawnPoint_" + (x * gridSize + y));
+                GameObject tile;
+                GameObject point = new GameObject("SpawnPoint_" + (x * expandedSize + y));
                 point.transform.position = tilePosition;
                 point.transform.parent = transform;
-                spawnPoints.Add(point.transform);
+                GameObject borderpoint = new GameObject("SpawnPoint_" + (x * expandedSize + y));
+                borderpoint.transform.position = bordertilesposition;
+                borderpoint.transform.parent = transform;
+                // Determinar si es borde o centro
+                if (x == 0 || x == expandedSize - 1 || y == 0 || y == expandedSize - 1)
+                {
+                    if (x == 0 && y == 0 || x == 0 && y == expandedSize - 1 || x == expandedSize - 1 && y == 0 || x == expandedSize - 1 && y == expandedSize - 1)
+                    {
+
+                    }
+                    else
+                    {
+                        //tile = Instantiate(borderTilePrefab, bordertilesposition, Quaternion.identity);
+                        borderSpawnPoints.Add(borderpoint.transform); // Guardar spawn point azul
+                    }
+
+                }
+                else
+                {
+                    tile = Instantiate(tilePrefab, tilePosition, Quaternion.identity);
+                    spawnPoints.Add(point.transform); // Guardar spawn point rojo
+                    tile.transform.parent = transform;
+                }
+
+
             }
         }
     }
 
     public List<Transform> GetSpawnPoints() => spawnPoints;
+    public List<Transform> GetBorderSpawnPoints() => borderSpawnPoints;
 }

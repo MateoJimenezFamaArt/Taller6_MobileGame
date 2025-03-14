@@ -13,12 +13,12 @@ public class LaserSpawner : MonoBehaviour
     private Queue<GameObject> objectPool = new Queue<GameObject>();
     private List<GameObject> activeObjects = new List<GameObject>();
     private List<Transform> borderspawnPoints;
-    private BeatManager beatManager;
+    private SingletonBeatManager beatManager;
     [SerializeField] private ParticleSystem laserParticles;
     private ParticleSystem laserParticlesInstance;
     void Start()
     {
-        beatManager = FindObjectOfType<BeatManager>();
+        beatManager = FindObjectOfType<SingletonBeatManager>();
         if (beatManager == null)
         {
             Debug.LogError("ObjectSpawner: No BeatManager found!");
@@ -36,13 +36,13 @@ public class LaserSpawner : MonoBehaviour
         InitializePool();
 
         // Subscribe to the beat event
-        BeatManager.OnBeat += SpawnObjectOnBeat;
+        SingletonBeatManager.Instance.OnBeat += SpawnObjectOnBeat;
     }
 
     void OnDestroy()
     {
         // Unsubscribe to avoid memory leaks
-        BeatManager.OnBeat -= SpawnObjectOnBeat;
+        SingletonBeatManager.Instance.OnBeat -= SpawnObjectOnBeat;
     }
 
     void InitializePool()

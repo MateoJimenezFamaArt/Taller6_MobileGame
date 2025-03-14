@@ -31,7 +31,7 @@ public class Laser : MonoBehaviour
         // Disable BoxCollider initially
         boxCollider.enabled = false;
 
-        BeatManager.OnBeat += OnBeat;
+        SingletonBeatManager.Instance.OnBeat += OnBeat;
     }
 
     void Start()
@@ -100,7 +100,7 @@ public class Laser : MonoBehaviour
     void OnDisable()
     {
         // Unsubscribe to prevent memory leaks
-        BeatManager.OnBeat -= OnBeat;
+        SingletonBeatManager.Instance.OnBeat -= OnBeat;
     }
 
     void OnTriggerEnter(Collider other)

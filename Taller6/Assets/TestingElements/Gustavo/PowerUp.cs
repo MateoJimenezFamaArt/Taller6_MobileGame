@@ -43,7 +43,7 @@ public class PowerUp : MonoBehaviour
         transform.localScale = initialScale; // Empieza con su escala inicial
         objectRenderer.material.color = warningColor;
 
-        BeatManager.OnBeat += OnBeat;
+        SingletonBeatManager.Instance.OnBeat += OnBeat;
     }
 
     void Start()
@@ -136,6 +136,6 @@ public class PowerUp : MonoBehaviour
 
     void OnDisable()
     {
-        BeatManager.OnBeat -= OnBeat;
+        SingletonBeatManager.Instance.OnBeat -= OnBeat;
     }
 }

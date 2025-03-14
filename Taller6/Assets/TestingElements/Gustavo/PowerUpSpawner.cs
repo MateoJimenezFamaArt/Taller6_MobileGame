@@ -11,11 +11,11 @@ public class PowerUpSpawner : MonoBehaviour
     private Queue<GameObject> objectPool = new Queue<GameObject>();
     private List<GameObject> activeObjects = new List<GameObject>();
     private List<Transform> spawnPoints;
-    private BeatManager beatManager;
+    private SingletonBeatManager beatManager;
 
     void Start()
     {
-        beatManager = FindObjectOfType<BeatManager>();
+        beatManager = FindObjectOfType<SingletonBeatManager>();
         if (beatManager == null)
         {
             Debug.LogError("ObjectSpawner: No BeatManager found!");
@@ -33,13 +33,13 @@ public class PowerUpSpawner : MonoBehaviour
         InitializePool();
 
         // Subscribe to the beat event
-        BeatManager.OnBeat += SpawnObjectOnBeat;
+        SingletonBeatManager.Instance.OnBeat += SpawnObjectOnBeat;
     }
 
     void OnDestroy()
     {
         // Unsubscribe to avoid memory leaks
-        BeatManager.OnBeat -= SpawnObjectOnBeat;
+        SingletonBeatManager.Instance.OnBeat -= SpawnObjectOnBeat;
     }
 
     void InitializePool()
