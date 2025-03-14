@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8289740c30797a64b8ce56b0e350c438
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 163920
+  packageName: Neumorphic UI - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Basic/Buttons/Exit.prefab
+  uploadId: 355130

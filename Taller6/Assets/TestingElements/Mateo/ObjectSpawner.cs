@@ -11,18 +11,10 @@ public class ObjectSpawner : MonoBehaviour
     private Queue<GameObject> objectPool = new Queue<GameObject>();
     private List<GameObject> activeObjects = new List<GameObject>();
     private List<Transform> spawnPoints;
-    private BeatManager beatManager;
 
     void Start()
     {
-        beatManager = FindObjectOfType<BeatManager>();
-        if (beatManager == null)
-        {
-            Debug.LogError("ObjectSpawner: No BeatManager found!");
-            return;
-        }
-
-        GridManager gridManager = FindObjectOfType<GridManager>();
+        GridManager gridManager = FindFirstObjectByType<GridManager>();
         if (gridManager == null)
         {
             Debug.LogError("ObjectSpawner: No GridManager found!");
@@ -33,13 +25,13 @@ public class ObjectSpawner : MonoBehaviour
         InitializePool();
 
         // Subscribe to the beat event
-        BeatManager.OnBeat += SpawnObjectOnBeat;
+        SingletonBeatManager.Instance.OnBeat += SpawnObjectOnBeat;
     }
 
     void OnDestroy()
     {
         // Unsubscribe to avoid memory leaks
-        BeatManager.OnBeat -= SpawnObjectOnBeat;
+        SingletonBeatManager.Instance.OnBeat -= SpawnObjectOnBeat;
     }
 
     void InitializePool()
@@ -86,7 +78,7 @@ public class ObjectSpawner : MonoBehaviour
         activeObjects.Add(obj);
 
         // Auto return object after some time
-        StartCoroutine(ReturnAfterTime(obj, beatManager.GetBeatInterval() * 8));
+        StartCoroutine(ReturnAfterTime(obj, SingletonBeatManager.Instance.GetBeatInterval() * 8));
     }
 
     IEnumerator ReturnAfterTime(GameObject obj, float time)

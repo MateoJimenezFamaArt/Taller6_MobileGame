@@ -16,6 +16,7 @@ public class BeatExploder : MonoBehaviour
     private int beatCounter = 0;
     private bool hasExploded = false;
     private ObjectSpawner objectSpawner; // Reference to return to pool
+    private PanelManager panelManager;
 
     void OnEnable()
     {
@@ -28,7 +29,7 @@ public class BeatExploder : MonoBehaviour
         objectRenderer.material.color = warningColor; // Start as warning color
 
         // Subscribe to BeatManager events
-        BeatManager.OnBeat += OnBeat;
+        SingletonBeatManager.Instance.OnBeat += OnBeat;
     }
 
     void Start()
@@ -43,6 +44,7 @@ public class BeatExploder : MonoBehaviour
             Debug.LogError("BeatExploder: No ObjectSpawner found in scene!");
             return;
         }
+        panelManager = FindFirstObjectByType<PanelManager>();
     }
 
     void OnBeat()
@@ -72,7 +74,10 @@ public class BeatExploder : MonoBehaviour
             if (distance <= explosionRadius)
             {
                 Debug.Log("Player hit by explosion! Restarting scene...");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+                //Panel de derrota
+                panelManager.PerderNivel();
             }
         }
 
@@ -102,7 +107,7 @@ public class BeatExploder : MonoBehaviour
     void OnDisable()
     {
         // Unsubscribe to prevent memory leaks
-        BeatManager.OnBeat -= OnBeat;
+        SingletonBeatManager.Instance.OnBeat -= OnBeat;
     }
 
     void OnDrawGizmos()
