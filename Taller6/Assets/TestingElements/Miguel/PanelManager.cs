@@ -10,21 +10,25 @@ public class PanelManager : MonoBehaviour
 {
     InputManager inputManager;
 
-    [SerializeField] AudioSource cancionNivel;
+    [SerializeField] AudioSource audioSource;
     [SerializeField] GameObject panelVictoria;
     [SerializeField] GameObject panelDerrota;
+    [SerializeField] float posicionFinalPaneles;
     [SerializeField] float tiempoBotonActivo = 0.5f;
     [SerializeField] GameObject botonPausa;
     [SerializeField] GameObject panelPausa;
     [SerializeField] float tiempoconteo = .3f;
     [SerializeField] TextMeshProUGUI conteoDespausar;
+    [SerializeField] Image barraProgreso;
 
     bool isPaused;
+    AudioClip cancion;
 
     private void Awake()
     {
         isPaused = false;
         inputManager = InputManager.Instanciar;
+        cancion = audioSource.clip;
     }
 
     private void OnEnable()
@@ -39,10 +43,20 @@ public class PanelManager : MonoBehaviour
 
     private void Update()
     {
-        if(!cancionNivel.isPlaying && !isPaused)
+        if(!isPaused)
         {
-            GanarNivel();
+            if (!audioSource.isPlaying) GanarNivel();
+            ActualizarProgreso();
         }
+    }
+
+    private void ActualizarProgreso()
+    {
+        float tiempoMax = cancion.length;
+        float tiempoActual = audioSource.time;
+
+        float progreso = tiempoActual / tiempoMax;
+        barraProgreso.fillAmount = progreso;
     }
 
     private void GanarNivel()
@@ -73,7 +87,7 @@ public class PanelManager : MonoBehaviour
     public void Pausar()
     {
         isPaused = true;
-        cancionNivel.Pause();
+        audioSource.Pause();
         panelPausa.SetActive(true);
         RectTransform rectTrans = panelPausa.GetComponent<RectTransform>();
 
@@ -83,7 +97,7 @@ public class PanelManager : MonoBehaviour
     public void Despausar()
     {
         RectTransform rectTrans = panelPausa.GetComponent<RectTransform>();
-        rectTrans.DOAnchorPos(new Vector2(0, 360), 1f, true);
+        rectTrans.DOAnchorPos(new Vector2(0, posicionFinalPaneles), 1f, true);
         conteoDespausar.gameObject.SetActive(true);
 
         StartCoroutine(IDespauasar(tiempoconteo));
@@ -123,6 +137,6 @@ public class PanelManager : MonoBehaviour
         conteoDespausar.gameObject.SetActive(false);
 
         isPaused = false;
-        cancionNivel.UnPause();
+        audioSource.UnPause();
     }
 }
