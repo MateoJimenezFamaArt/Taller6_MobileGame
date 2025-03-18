@@ -16,6 +16,8 @@ public class LaserSpawner : MonoBehaviour
     private SingletonBeatManager beatManager;
     [SerializeField] private ParticleSystem laserParticles;
     private ParticleSystem laserParticlesInstance;
+    [SerializeField] private GameObject laseremitor;
+    private GameObject laseremitorInstance;
     void Start()
     {
         beatManager = FindObjectOfType<SingletonBeatManager>();
@@ -106,14 +108,8 @@ GameObject GetPooledObject()
         mostCommonX1 = conteoX.OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
         mostCommonX2 = conteoX.OrderByDescending(kv => kv.Value).Skip(1).Select(kv => kv.Key).FirstOrDefault();
 
-        //Debug.Log("MostCommonX1: " + mostCommonX1);
-        //Debug.Log("MostCommonX2: " + mostCommonX2);
-
         mostCommonZ1 = conteoZ.OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
         mostCommonZ2 = conteoZ.OrderByDescending(kv => kv.Value).Skip(1).Select(kv => kv.Key).FirstOrDefault();
-
-        //Debug.Log("MostCommonZ1: " + mostCommonZ1);
-        //Debug.Log("MostCommonZ2: " + mostCommonZ2);
 
         Transform spawnPoint = borderspawnPoints[Random.Range(0, borderspawnPoints.Count)];
 
@@ -173,6 +169,7 @@ GameObject GetPooledObject()
         }
 
         laserParticlesInstance = Instantiate(laserParticles, spawnPosition, Quaternion.LookRotation(direction), obj.transform);
+        laseremitorInstance = Instantiate(laseremitor, spawnPosition, Quaternion.LookRotation(direction), obj.transform);
 
         StartCoroutine(ReturnAfterTime(obj, beatManager.GetBeatInterval() * 8));      
 }

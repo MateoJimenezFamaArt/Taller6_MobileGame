@@ -1563,7 +1563,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2433,6 +2433,7 @@ MonoBehaviour:
   poolSize: 20
   maxObjectsOnGrid: 1
   laserParticles: {fileID: 3969164693220797109, guid: df3323975113e6e42a4e7fb9de27cdb1, type: 3}
+  laseremitor: {fileID: 7699784213479343585, guid: bc543cda13a43f34d8579db253643578, type: 3}
 --- !u!114 &599039630
 MonoBehaviour:
   m_ObjectHideFlags: 0
