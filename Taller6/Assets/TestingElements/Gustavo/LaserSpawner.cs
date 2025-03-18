@@ -168,7 +168,7 @@ GameObject GetPooledObject()
             }
         }
 
-        laserParticlesInstance = Instantiate(laserParticles, spawnPosition, Quaternion.LookRotation(direction), obj.transform);
+        //laserParticlesInstance = Instantiate(laserParticles, spawnPosition, Quaternion.LookRotation(direction), obj.transform);
         laseremitorInstance = Instantiate(laseremitor, spawnPosition, Quaternion.LookRotation(direction), obj.transform);
 
         StartCoroutine(ReturnAfterTime(obj, beatManager.GetBeatInterval() * 8));      

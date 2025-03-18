@@ -65,6 +65,7 @@ MonoBehaviour:
   explodeColor: {r: 1, g: 0, b: 0, a: 1}
   scaleIncreasePerBeat: 1.8
   fadeOutTime: 0.2
+  explosionParticles: {fileID: 3004398749651155682, guid: 59bfe89965c466847a936a439b5b3f15, type: 3}
 --- !u!137 &1140577894054635424
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

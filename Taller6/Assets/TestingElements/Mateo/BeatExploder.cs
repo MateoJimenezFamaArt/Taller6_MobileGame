@@ -18,6 +18,9 @@ public class BeatExploder : MonoBehaviour
     private ObjectSpawner objectSpawner; // Reference to return to pool
     private PanelManager panelManager;
 
+    [SerializeField] private ParticleSystem explosionParticles;
+    private ParticleSystem explosionParticlesInstance;
+
     void OnEnable()
     {
         if (objectRenderer == null) objectRenderer = GetComponent<Renderer>();
@@ -65,6 +68,7 @@ public class BeatExploder : MonoBehaviour
         if (hasExploded) return;
         hasExploded = true;
         objectRenderer.material.color = explodeColor;
+        explosionParticlesInstance = Instantiate(explosionParticles, this.transform.position, Quaternion.identity, this.transform);
 
         // Check if player is within explosion range
         GameObject player = GameObject.FindGameObjectWithTag("Player");
