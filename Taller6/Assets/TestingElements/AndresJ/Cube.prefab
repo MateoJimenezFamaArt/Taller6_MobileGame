@@ -69,8 +69,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleIncreasePerBeat: 0.3
   explosionDelayBeats: 3
-  warningColor: {r: 0, g: 0, b: 1, a: 1}
-  activeColor: {r: 0, g: 0.8689232, b: 1, a: 1}
   fadeOutTime: 3
 --- !u!120 &2057331551162261899
 LineRenderer:
@@ -96,7 +94,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3285b71cf1013b4409012166a4639b77, type: 2}
+  - {fileID: 2100000, guid: c12b5146473751345aa8ab4ad6f62b46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -171,8 +169,8 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
-    textureScale: {x: 1, y: 1}
+    textureMode: 2
+    textureScale: {x: 1, y: 1.1}
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
