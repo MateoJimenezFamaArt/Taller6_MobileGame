@@ -2353,6 +2353,8 @@ MonoBehaviour:
   spawnPrefab: {fileID: 8086687074196694183, guid: 462f6b334eea8bf41b9ebc42973fc01b, type: 3}
   poolSize: 20
   maxObjectsOnGrid: 10
+  spawnParticles: {fileID: 2682265937999394032, guid: 305268b9c54c10b46acf95bea126191c, type: 3}
+  emissionOnBeats: 3
 --- !u!114 &599039624
 MonoBehaviour:
   m_ObjectHideFlags: 0

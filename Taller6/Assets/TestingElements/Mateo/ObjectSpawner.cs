@@ -12,6 +12,10 @@ public class ObjectSpawner : MonoBehaviour
     private List<GameObject> activeObjects = new List<GameObject>();
     private List<Transform> spawnPoints;
 
+    [SerializeField] private ParticleSystem spawnParticles;
+    private ParticleSystem spawnParticlesInstance;
+    public int emissionOnBeats = 3;
+    private int beatCounter = 0;
     void Start()
     {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
@@ -49,12 +53,13 @@ public class ObjectSpawner : MonoBehaviour
         if (objectPool.Count > 0)
         {
             GameObject obj = objectPool.Dequeue();
-            obj.SetActive(true);
+            obj.SetActive(false);
             return obj;
         }
         else
         {
             GameObject newObj = Instantiate(spawnPrefab);
+            newObj.SetActive(false);
             return newObj;
         }
     }
@@ -69,11 +74,19 @@ public class ObjectSpawner : MonoBehaviour
     void SpawnObjectOnBeat()
     {
         if (spawnPoints.Count == 0 || activeObjects.Count >= maxObjectsOnGrid) return;
-
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
         GameObject obj = GetPooledObject();
         obj.transform.position = spawnPoint.position;
         obj.name = "SpawnedObject_" + activeObjects.Count;
+        beatCounter++;
+        Vector3 direction = Vector3.up;
+        spawnParticlesInstance = Instantiate(spawnParticles, spawnPoint.transform.position,Quaternion.LookRotation(direction), obj.transform);
+        ParticleSystem.EmissionModule emission = spawnParticlesInstance.emission;
+        if(beatCounter == 0) emission.rateOverTime = 10;
+        else { emission.rateOverTime = 15; }
+        if (beatCounter == emissionOnBeats) { emission.rateOverTime = 20; }
+        else if(beatCounter > emissionOnBeats){ emission.rateOverTime = 0;  obj.SetActive(true); }
+
 
         activeObjects.Add(obj);
 
