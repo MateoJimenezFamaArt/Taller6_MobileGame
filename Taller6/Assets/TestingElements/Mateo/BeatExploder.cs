@@ -31,6 +31,12 @@ public class BeatExploder : MonoBehaviour
         transform.localScale = initialScale;
         objectRenderer.material.color = warningColor; // Start as warning color
 
+        if (explosionParticlesInstance == null)
+        {
+            explosionParticlesInstance = Instantiate(explosionParticles, transform.position, Quaternion.identity, transform);
+        }
+        explosionParticlesInstance.Stop();
+
         // Subscribe to BeatManager events
         SingletonBeatManager.Instance.OnBeat += OnBeat;
     }
@@ -68,7 +74,17 @@ public class BeatExploder : MonoBehaviour
         if (hasExploded) return;
         hasExploded = true;
         objectRenderer.material.color = explodeColor;
-        explosionParticlesInstance = Instantiate(explosionParticles, this.transform.position, Quaternion.identity, this.transform);
+        if (explosionParticlesInstance != null)
+        {
+            explosionParticlesInstance.transform.position = transform.position;
+            explosionParticlesInstance.Play();
+        }
+        else
+        {
+            Debug.LogWarning("destrui las particulas");
+            explosionParticlesInstance = Instantiate(explosionParticles, transform.position, Quaternion.identity, transform);
+            explosionParticlesInstance.Play();
+        }
 
         // Check if player is within explosion range
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -105,6 +121,11 @@ public class BeatExploder : MonoBehaviour
         }
 
         transform.localScale = initialScale; // Reset scale
+        if (explosionParticlesInstance != null)
+        {
+            explosionParticlesInstance.Stop();
+            explosionParticlesInstance.Clear();
+        }
         objectSpawner.ReturnToPool(gameObject); // Return to object pool
     }
 
