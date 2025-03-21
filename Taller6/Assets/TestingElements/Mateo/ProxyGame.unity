@@ -1866,7 +1866,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599039619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cea78f8cff75a094799324919b6c1730, type: 3}
   m_Name: 
@@ -1949,7 +1949,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599039619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95907bd943e18a4486359bedfadfb0c, type: 3}
   m_Name: 
@@ -2734,7 +2734,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1539921148}
-  - {fileID: 1881356636}
   - {fileID: 2141403558}
   - {fileID: 217355394}
   - {fileID: 1510868713}
@@ -3755,7 +3754,7 @@ GameObject:
   - component: {fileID: 1881356638}
   - component: {fileID: 1881356637}
   m_Layer: 0
-  m_Name: Managers
+  m_Name: PanelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3769,12 +3768,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881356635}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.19928, y: 685.876, z: 61.747112}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1196061912}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1881356637
 MonoBehaviour:
@@ -3800,15 +3799,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f634dc38219bbe4ba6385eaa2087e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  panelVictoria: {fileID: 0}
-  panelDerrota: {fileID: 0}
+  audioSource: {fileID: 599039620}
+  panelVictoria: {fileID: 1510868712}
+  panelDerrota: {fileID: 607924227}
   posicionFinalPaneles: 0
   tiempoBotonActivo: 0.5
-  botonPausa: {fileID: 0}
-  panelPausa: {fileID: 0}
+  botonPausa: {fileID: 217355393}
+  panelPausa: {fileID: 1346424205}
   tiempoconteo: 1
-  conteoDespausar: {fileID: 0}
+  conteoDespausar: {fileID: 364464915}
   barraProgreso: {fileID: 1539921146}
 --- !u!1 &2141403557
 GameObject:
@@ -3892,6 +3891,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1881356636}
   - {fileID: 1824183497}
   - {fileID: 599039622}
   - {fileID: 1487080059}
