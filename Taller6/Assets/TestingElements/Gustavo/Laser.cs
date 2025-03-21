@@ -6,7 +6,6 @@ public class Laser : MonoBehaviour
 {
     public float scaleIncreasePerBeat = 0.3f; // Cuánto crece el láser por beat
     public int explosionDelayBeats = 3; // Retardo en beats antes de hacer algo
-   
     public float fadeOutTime = 1f; // Tiempo antes de regresar a la piscina
 
     private LineRenderer objectRenderer;
@@ -36,6 +35,8 @@ public class Laser : MonoBehaviour
     {
         objectRenderer = GetComponent<LineRenderer>();
         initialScale = transform.localScale;
+        objectRenderer.startWidth = 0.1f;
+        objectRenderer.endWidth = 0.1f;
 
         // Find LaserSpawner to return to pool
         laserSpawner = FindObjectOfType<LaserSpawner>();
@@ -51,7 +52,9 @@ public class Laser : MonoBehaviour
         if (hasExploded) return;
 
         beatCounter++;
-        transform.localScale += new Vector3(scaleIncreasePerBeat, scaleIncreasePerBeat, 0);
+
+        objectRenderer.startWidth = objectRenderer.startWidth + scaleIncreasePerBeat;
+        objectRenderer.endWidth = objectRenderer.endWidth + scaleIncreasePerBeat;
 
         if (beatCounter >= explosionDelayBeats)
         {
@@ -78,13 +81,11 @@ public class Laser : MonoBehaviour
     IEnumerator FadeOutAndReturn()
     {
         float elapsedTime = 0;
-        Color startColor = objectRenderer.material.color;
         Vector3 startScale = transform.localScale;
 
         while (elapsedTime < fadeOutTime)
         {
             float t = elapsedTime / fadeOutTime;
-            objectRenderer.material.color = Color.Lerp(startColor, Color.clear, t);
             transform.localScale = Vector3.Lerp(startScale, Vector3.zero, t);
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -102,7 +103,7 @@ public class Laser : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             Debug.Log("has sido contagiado con sida");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
