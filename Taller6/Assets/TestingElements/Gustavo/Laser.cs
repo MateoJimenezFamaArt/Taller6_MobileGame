@@ -6,8 +6,7 @@ public class Laser : MonoBehaviour
 {
     public float scaleIncreasePerBeat = 0.3f; // Cuánto crece el láser por beat
     public int explosionDelayBeats = 3; // Retardo en beats antes de hacer algo
-    public Color warningColor = Color.blue; // Color de advertencia antes de la expansión
-    public Color activeColor = Color.red; // Color cuando se activa
+   
     public float fadeOutTime = 1f; // Tiempo antes de regresar a la piscina
 
     private LineRenderer objectRenderer;
@@ -26,7 +25,6 @@ public class Laser : MonoBehaviour
         beatCounter = 0;
         hasExploded = false;
         transform.localScale = initialScale;
-        objectRenderer.material.color = warningColor; // Start as warning color
 
         // Disable BoxCollider initially
         boxCollider.enabled = false;
@@ -66,7 +64,6 @@ public class Laser : MonoBehaviour
         if (hasExploded) yield break;
 
         hasExploded = true;
-        objectRenderer.material.color = activeColor;
 
         // Activa el BoxCollider
         boxCollider.enabled = true;

@@ -20,6 +20,9 @@ public class PowerUp : MonoBehaviour
     private PowerUpSpawner powerUpSpawner;
     private PlayerScore playerScore;
 
+    [SerializeField] private ParticleSystem spawnParticles;
+    private ParticleSystem spawnParticlesInstance;
+
     // NUEVO: Límites de etapas
     private int initialStageLimit;
     private int middleStageLimit;
@@ -63,6 +66,8 @@ public class PowerUp : MonoBehaviour
             Debug.LogError("PlayerScore: No PlayerScore found in scene!");
             return;
         }
+        Vector3 direction = Vector3.up;
+        spawnParticlesInstance = Instantiate(spawnParticles, this.transform.position, Quaternion.LookRotation(direction), this.transform);
 
         StartCoroutine(ScoreOverTime());
     }

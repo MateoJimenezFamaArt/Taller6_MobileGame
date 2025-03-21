@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fb51d7848407b4cb1522eece2bba06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionParticles: {fileID: 3004398749651155682, guid: 59bfe89965c466847a936a439b5b3f15, type: 3}
   explosionRadius: 3
   explosionDelayBeats: 3
   warningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

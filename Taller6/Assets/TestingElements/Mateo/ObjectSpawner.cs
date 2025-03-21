@@ -12,6 +12,10 @@ public class ObjectSpawner : MonoBehaviour
     private List<GameObject> activeObjects = new List<GameObject>();
     private List<Transform> spawnPoints;
 
+    [SerializeField] private ParticleSystem spawnParticles;
+    public int emissionOnBeats = 3;
+    private int beatCounter = 0;
+
     void Start()
     {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
@@ -75,10 +79,48 @@ public class ObjectSpawner : MonoBehaviour
         obj.transform.position = spawnPoint.position;
         obj.name = "SpawnedObject_" + activeObjects.Count;
 
+        SkinnedMeshRenderer meshRenderer = obj.GetComponent<SkinnedMeshRenderer>();
+        BeatExploder exploder = obj.GetComponent<BeatExploder>();
+        RotateObject rotator = obj.GetComponent<RotateObject>();
+
+        meshRenderer.enabled = false;
+        exploder.enabled = false;
+        rotator.enabled = false;
+
+        ParticleSystem particles = Instantiate(spawnParticles, spawnPoint.position, Quaternion.identity, obj.transform);
+        ParticleSystem.EmissionModule emission = particles.emission;
+
+        emission.rateOverTime = 10;
+
+        StartCoroutine(HandleObjectBeats(obj, particles, meshRenderer, exploder, rotator));
+
         activeObjects.Add(obj);
 
         // Auto return object after some time
         StartCoroutine(ReturnAfterTime(obj, SingletonBeatManager.Instance.GetBeatInterval() * 8));
+    }
+
+    IEnumerator HandleObjectBeats(GameObject obj, ParticleSystem particles, SkinnedMeshRenderer meshRenderer, BeatExploder exploder, RotateObject rotator)
+    {
+        int localBeatCounter = 0;
+
+        while (localBeatCounter < emissionOnBeats)
+        {
+            yield return new WaitForSeconds(SingletonBeatManager.Instance.GetBeatInterval());
+            localBeatCounter++;
+            ParticleSystem.EmissionModule emission = particles.emission;
+            emission.rateOverTime = 10 + (localBeatCounter * 5);
+            if (localBeatCounter == emissionOnBeats)
+            {
+                particles.Stop();
+                particles.Clear();
+                Destroy(particles.gameObject);
+
+                meshRenderer.enabled = true;
+                exploder.enabled = true;
+                rotator.enabled = true;
+            }
+        }
     }
 
     IEnumerator ReturnAfterTime(GameObject obj, float time)

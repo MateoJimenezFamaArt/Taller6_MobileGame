@@ -2345,7 +2345,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599039619}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cea78f8cff75a094799324919b6c1730, type: 3}
   m_Name: 
@@ -2353,6 +2353,8 @@ MonoBehaviour:
   spawnPrefab: {fileID: 8086687074196694183, guid: 462f6b334eea8bf41b9ebc42973fc01b, type: 3}
   poolSize: 20
   maxObjectsOnGrid: 10
+  spawnParticles: {fileID: 2682265937999394032, guid: 305268b9c54c10b46acf95bea126191c, type: 3}
+  emissionOnBeats: 3
 --- !u!114 &599039624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2432,6 +2434,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 4440931241781800931, guid: 40ad1d1023cb6154aae870c3bb07557b, type: 3}
   poolSize: 20
   maxObjectsOnGrid: 1
+  laseremitor: {fileID: 7699784213479343585, guid: bc543cda13a43f34d8579db253643578, type: 3}
   laserParticles: {fileID: 3969164693220797109, guid: df3323975113e6e42a4e7fb9de27cdb1, type: 3}
 --- !u!114 &599039630
 MonoBehaviour:
@@ -3103,12 +3106,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 234575026}
   - {fileID: 217355394}
   - {fileID: 1510868713}
   - {fileID: 791433594}
   - {fileID: 1346424206}
   - {fileID: 607924228}
-  - {fileID: 234575026}
   - {fileID: 144530977}
   - {fileID: 79333707}
   m_Father: {fileID: 0}

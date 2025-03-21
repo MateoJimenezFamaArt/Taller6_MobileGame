@@ -14,11 +14,14 @@ public class LaserSpawner : MonoBehaviour
     private List<GameObject> activeObjects = new List<GameObject>();
     private List<Transform> borderspawnPoints;
     private SingletonBeatManager beatManager;
+    [SerializeField] private GameObject laseremitor;
+    private GameObject laseremitorInstance;
+
     [SerializeField] private ParticleSystem laserParticles;
     private ParticleSystem laserParticlesInstance;
     void Start()
     {
-        beatManager = FindObjectOfType<SingletonBeatManager>();
+        beatManager = FindFirstObjectByType<SingletonBeatManager>();
         if (beatManager == null)
         {
             Debug.LogError("ObjectSpawner: No BeatManager found!");
@@ -172,7 +175,7 @@ GameObject GetPooledObject()
             }
         }
 
-        laserParticlesInstance = Instantiate(laserParticles, spawnPosition, Quaternion.LookRotation(direction), obj.transform);
+        laseremitorInstance = Instantiate(laseremitor, spawnPosition, Quaternion.LookRotation(direction), obj.transform);
 
         StartCoroutine(ReturnAfterTime(obj, beatManager.GetBeatInterval() * 8));      
 }

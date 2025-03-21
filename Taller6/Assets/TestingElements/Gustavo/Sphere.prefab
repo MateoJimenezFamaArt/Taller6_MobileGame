@@ -128,7 +128,7 @@ MonoBehaviour:
   scaleIncreasePerBeat: 0.3
   fadeOutTime: 0.5
   explosionEffectPrefab: {fileID: 521085154120586000, guid: 0367009fb876ea048a582ac25391d4a7, type: 3}
-  beatCounter: 0
+  spawnParticles: {fileID: 6313996382492430802, guid: c3488aa7a320208478b69c1e96d0e0c9, type: 3}
 --- !u!114 &2957092859177696917
 MonoBehaviour:
   m_ObjectHideFlags: 0
