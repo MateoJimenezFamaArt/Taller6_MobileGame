@@ -23,8 +23,8 @@ public class Beat : MonoBehaviour
     public void Deactive()
     {
         DOTween.Sequence()
-            .Join(_transform.DOAnchorPosX(0, SingletonBeatManager.Instance.GetBeatInterval()).SetEase(Ease.InOutSine))
-            .Join(_image.DOFade(0, SingletonBeatManager.Instance.GetBeatInterval()).SetEase(Ease.Linear))
+            .Join(_transform.DOAnchorPosX(0, SingletonBeatManager.Instance.GetBeatInterval() * 4.5f).SetEase(Ease.InOutSine))
+            .Join(_image.DOFade(0, SingletonBeatManager.Instance.GetBeatInterval() * 4f).SetEase(Ease.Linear))
             .OnComplete(() => _beatPool.Release(this));
     }
 
