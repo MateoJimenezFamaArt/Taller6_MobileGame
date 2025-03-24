@@ -45,7 +45,7 @@ public class PanelManager : MonoBehaviour
     {
         if(!isPaused)
         {
-            if (!audioSource.isPlaying) GanarNivel();
+            if (barraProgreso.fillAmount > 0.95f) GanarNivel();
             ActualizarProgreso();
         }
     }
@@ -86,16 +86,18 @@ public class PanelManager : MonoBehaviour
 
     public void Pausar()
     {
+        
         isPaused = true;
         audioSource.Pause();
         panelPausa.SetActive(true);
         RectTransform rectTrans = panelPausa.GetComponent<RectTransform>();
 
-        rectTrans.DOAnchorPos(new Vector2(0, 0), 1f, true);
+        rectTrans.DOAnchorPos(new Vector2(0, 0), 1f, true).onComplete = () => Time.timeScale = 0;
     }
 
     public void Despausar()
     {
+        Time.timeScale = 1;
         RectTransform rectTrans = panelPausa.GetComponent<RectTransform>();
         rectTrans.DOAnchorPos(new Vector2(0, posicionFinalPaneles), 1f, true);
         conteoDespausar.gameObject.SetActive(true);
@@ -138,5 +140,6 @@ public class PanelManager : MonoBehaviour
 
         isPaused = false;
         audioSource.UnPause();
+        panelPausa.SetActive(false);
     }
 }

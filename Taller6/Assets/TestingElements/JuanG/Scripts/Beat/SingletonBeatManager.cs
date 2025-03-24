@@ -37,7 +37,7 @@ public class SingletonBeatManager : MonoBehaviour
 
     void Update()
     {
-        if (Time.time >= nextBeatTime - 0.2f && Time.time <= nextBeatTime + 0.2f)
+        if (Time.time >= nextBeatTime - 0.4f && Time.time <= nextBeatTime + 0.4f)
         {
             if (!isOnBeat)
             {
