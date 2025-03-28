@@ -103,7 +103,7 @@ public class Laser : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             Debug.Log("has sido contagiado con sida");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

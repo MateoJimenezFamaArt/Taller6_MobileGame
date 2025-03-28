@@ -4,6 +4,9 @@ using System.Collections;
 
 public class BeatExploder : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem explosionParticles;
+    private ParticleSystem explosionParticlesInstance;
+
     public float explosionRadius = 3f; // Radius of the explosion
     public int explosionDelayBeats = 3; // Explodes on the third beat
     public Color warningColor = Color.yellow; // Warning color before explosion
@@ -74,6 +77,18 @@ public class BeatExploder : MonoBehaviour
         if (hasExploded) return;
         hasExploded = true;
         objectRenderer.material.color = explodeColor;
+        if (explosionParticlesInstance != null)
+        {
+            explosionParticlesInstance.transform.position = transform.position;
+            explosionParticlesInstance.Play();
+        }
+        else
+        {
+            Debug.LogWarning("destrui las particulas");
+            explosionParticlesInstance = Instantiate(explosionParticles, transform.position, Quaternion.identity, transform);
+            explosionParticlesInstance.Play();
+        }
+
         if (explosionParticlesInstance != null)
         {
             explosionParticlesInstance.transform.position = transform.position;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class GridManager : MonoBehaviour
 {
-    public GameObject tilePrefab;
+    public GameObject[] tilePrefabs; // Array for multiple tile prefabs
     public int gridSize = 8;
     public float spacing = 2f;
 
@@ -12,9 +12,9 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-        if (tilePrefab == null)
+        if (tilePrefabs == null || tilePrefabs.Length == 0)
         {
-            Debug.LogError("GridManager: No Tile Prefab assigned!");
+            Debug.LogError("GridManager: No Tile Prefabs assigned!");
             return;
         }
 
@@ -23,7 +23,7 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
-        int expandedSize = gridSize + 2; // Tamaño expandido para incluir los bordes
+        int expandedSize = gridSize + 2; // Expand grid size to include borders
         Vector3 startPosition = transform.position - new Vector3(expandedSize / 2 * spacing, 0, expandedSize / 2 * spacing);
 
         for (int x = 0; x < expandedSize; x++)
@@ -37,31 +37,27 @@ public class GridManager : MonoBehaviour
                 GameObject point = new GameObject("SpawnPoint_" + (x * expandedSize + y));
                 point.transform.position = tilePosition;
                 point.transform.parent = transform;
-                GameObject borderpoint = new GameObject("SpawnPoint_" + (x * expandedSize + y));
+                GameObject borderpoint = new GameObject("BorderSpawnPoint_" + (x * expandedSize + y));
                 borderpoint.transform.position = bordertilesposition;
                 borderpoint.transform.parent = transform;
-                // Determinar si es borde o centro
+
+                // Check if it's a border or center tile
                 if (x == 0 || x == expandedSize - 1 || y == 0 || y == expandedSize - 1)
                 {
-                    if (x == 0 && y == 0 || x == 0 && y == expandedSize - 1 || x == expandedSize - 1 && y == 0 || x == expandedSize - 1 && y == expandedSize - 1)
+                    if (x != 0 || y != 0 && x != 0 || y != expandedSize - 1 && x != expandedSize - 1 || y != 0 && x != expandedSize - 1 || y != expandedSize - 1)
                     {
-
+                        // Border tile logic (optional to instantiate different tiles)
+                        borderSpawnPoints.Add(borderpoint.transform); // Save border spawn point
                     }
-                    else
-                    {
-                        //tile = Instantiate(borderTilePrefab, bordertilesposition, Quaternion.identity);
-                        borderSpawnPoints.Add(borderpoint.transform); // Guardar spawn point azul
-                    }
-
                 }
                 else
                 {
-                    tile = Instantiate(tilePrefab, tilePosition, Quaternion.identity);
-                    spawnPoints.Add(point.transform); // Guardar spawn point rojo
+                    // Randomly select a tile prefab from the array
+                    GameObject selectedPrefab = tilePrefabs[Random.Range(0, tilePrefabs.Length)];
+                    tile = Instantiate(selectedPrefab, tilePosition, Quaternion.identity);
+                    spawnPoints.Add(point.transform); // Save spawn point
                     tile.transform.parent = transform;
                 }
-
-
             }
         }
     }

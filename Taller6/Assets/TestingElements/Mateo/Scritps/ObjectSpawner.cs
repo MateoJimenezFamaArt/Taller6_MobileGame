@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,6 +15,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] private ParticleSystem spawnParticles;
     public int emissionOnBeats = 3;
     private int beatCounter = 0;
+
     void Start()
     {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
@@ -52,13 +53,12 @@ public class ObjectSpawner : MonoBehaviour
         if (objectPool.Count > 0)
         {
             GameObject obj = objectPool.Dequeue();
-            obj.SetActive(true);           
+            obj.SetActive(true);
             return obj;
         }
         else
         {
             GameObject newObj = Instantiate(spawnPrefab);
-            newObj.SetActive(true);
             return newObj;
         }
     }
@@ -79,7 +79,6 @@ public class ObjectSpawner : MonoBehaviour
         obj.transform.position = spawnPoint.position;
         obj.name = "SpawnedObject_" + activeObjects.Count;
 
-        // Esto lo puse yo AJ para poner las particulas que aparecen antes del objeto
         SkinnedMeshRenderer meshRenderer = obj.GetComponent<SkinnedMeshRenderer>();
         BeatExploder exploder = obj.GetComponent<BeatExploder>();
         RotateObject rotator = obj.GetComponent<RotateObject>();
@@ -95,15 +94,12 @@ public class ObjectSpawner : MonoBehaviour
 
         StartCoroutine(HandleObjectBeats(obj, particles, meshRenderer, exploder, rotator));
 
-        //hasta aqui llega lo que puse
-
         activeObjects.Add(obj);
 
         // Auto return object after some time
         StartCoroutine(ReturnAfterTime(obj, SingletonBeatManager.Instance.GetBeatInterval() * 8));
     }
 
-    //esto tambien lo puse yo, Andrés Juan para poder manejar bien los beats entre las particulas y los gaticos
     IEnumerator HandleObjectBeats(GameObject obj, ParticleSystem particles, SkinnedMeshRenderer meshRenderer, BeatExploder exploder, RotateObject rotator)
     {
         int localBeatCounter = 0;
@@ -126,7 +122,6 @@ public class ObjectSpawner : MonoBehaviour
             }
         }
     }
-
 
     IEnumerator ReturnAfterTime(GameObject obj, float time)
     {

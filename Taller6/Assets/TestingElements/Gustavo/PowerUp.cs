@@ -11,8 +11,6 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private float fadeOutTime = 0.5f;
 
     [SerializeField] private GameObject explosionEffectPrefab; // NUEVO: Prefab de explosión
-    [SerializeField] private ParticleSystem spawnParticles;
-    private ParticleSystem spawnParticlesInstance;
 
     private Renderer objectRenderer;
     private Vector3 initialScale; // NUEVO: Escala inicial como referencia
@@ -21,6 +19,9 @@ public class PowerUp : MonoBehaviour
     private bool isFadingOut = false;
     private PowerUpSpawner powerUpSpawner;
     private PlayerScore playerScore;
+
+    [SerializeField] private ParticleSystem spawnParticles;
+    private ParticleSystem spawnParticlesInstance;
 
     // NUEVO: Límites de etapas
     private int initialStageLimit;
@@ -54,8 +55,6 @@ public class PowerUp : MonoBehaviour
 
         powerUpSpawner = FindObjectOfType<PowerUpSpawner>();
         playerScore = FindObjectOfType<PlayerScore>();
-        Vector3 direction = Vector3.up;
-        //direction = Vector3.up;
 
         if (powerUpSpawner == null)
         {
@@ -67,6 +66,7 @@ public class PowerUp : MonoBehaviour
             Debug.LogError("PlayerScore: No PlayerScore found in scene!");
             return;
         }
+        Vector3 direction = Vector3.up;
         spawnParticlesInstance = Instantiate(spawnParticles, this.transform.position, Quaternion.LookRotation(direction), this.transform);
 
         StartCoroutine(ScoreOverTime());
