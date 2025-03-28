@@ -21,9 +21,6 @@ public class BeatExploder : MonoBehaviour
     private ObjectSpawner objectSpawner; // Reference to return to pool
     private PanelManager panelManager;
 
-    [SerializeField] private ParticleSystem explosionParticles;
-    private ParticleSystem explosionParticlesInstance;
-
     void OnEnable()
     {
         if (objectRenderer == null) objectRenderer = GetComponent<Renderer>();
